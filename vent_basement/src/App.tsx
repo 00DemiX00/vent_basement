@@ -1,11 +1,16 @@
-import { Button } from './Components/ui/button'
+import { ThemeProvider } from "@/Components/theme-provider"
+import { Switch } from "@/Components/ui/switch"
+import { Button } from "./Components/ui/button"
+import { MyChart } from "./Components/ui/example-chart"
+
 
 
 export default function App () {
   return (
-     <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <Switch></Switch>
+        <Button>Кнопка</Button>
+    </ThemeProvider>
   )
 }
 
