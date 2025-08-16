@@ -1,43 +1,113 @@
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent,  ChartLegend, ChartLegendContent } from "@/Components/ui/chart"
-import { Bar, BarChart, CartesianGrid, XAxis} from "recharts"
+import { TrendingUp } from "lucide-react"
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card"
+import { type ChartConfig } from "@/Components/ui/chart"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/Components/ui/chart"
 
+export const description = "An area chart with gradient fill"
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "Январь", desktop: 57, mobile: 47 },
+  { month: "Февраль", desktop: 34, mobile: 55 },
+  { month: "Март", desktop: 21, mobile: 57 },
+  { month: "Апрель", desktop: 83, mobile: 43 },
+  { month: "Май", desktop: 53, mobile: 80 },
+  { month: "Июнь", desktop: 56, mobile: 91 },
 ]
-
 const chartConfig = {
   desktop: {
-    label: "Desktop",
-    color: "#2563eb",
+    label: "Д1 (пол)",
+    color: "var(--chart-1)",
   },
   mobile: {
-    label: "Mobile",
-    color: "#60a5fa",
+    label: "Д2 (подвал)",
+    color: "var(--chart-2)",
   },
 } satisfies ChartConfig
-
-export function MyChart() {
+export function ChartAreaGradient() {
   return (
-    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-      <BarChart accessibilityLayer data={chartData}>
-         <CartesianGrid vertical={false} />
-         <XAxis
-      dataKey="month"
-      tickLine={false}
-      tickMargin={10}
-      axisLine={false}
-      tickFormatter={(value) => value.slice(0, 3)}
-    />
-    <ChartTooltip content={<ChartTooltipContent />} />
-    <ChartLegend content={<ChartLegendContent />} />
-        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-      </BarChart>
-    </ChartContainer>
+    <Card style={{ width: '600px', height: '400px' }} >
+      <CardHeader>
+        <CardTitle>Показатели влажности</CardTitle>
+        <CardDescription>
+          За последние 6 месяцев
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={chartConfig}>
+          <AreaChart
+            accessibilityLayer
+            data={chartData}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <defs>
+              <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor="var(--color-desktop)"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="var(--color-desktop)"
+                  stopOpacity={0.1}
+                />
+              </linearGradient>
+              <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor="var(--color-mobile)"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="var(--color-mobile)"
+                  stopOpacity={0.1}
+                />
+              </linearGradient>
+            </defs>
+            <Area
+              dataKey="mobile"
+              type="natural"
+              fill="url(#fillMobile)"
+              fillOpacity={0.4}
+              stroke="var(--color-mobile)"
+              stackId="a"
+            />
+            <Area
+              dataKey="desktop"
+              type="natural"
+              fill="url(#fillDesktop)"
+              fillOpacity={0.4}
+              stroke="var(--color-desktop)"
+              stackId="a"
+            />
+          </AreaChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter>
+        <div className="flex w-full items-start gap-2 text-sm">
+          <div className="grid gap-2">
+            <div className="flex items-center gap-2 leading-none font-medium">
+              Рост на 5.2% в текущем месяце <TrendingUp className="h-4 w-4" />
+            </div>
+            <div className="text-muted-foreground flex items-center gap-2 leading-none">
+              Январь - Июнь 2025
+            </div>
+          </div>
+        </div>
+      </CardFooter>
+    </Card>
   )
 }
