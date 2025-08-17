@@ -1,17 +1,17 @@
-import { TrendingUp } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/Components/ui/card"
 import { type ChartConfig } from "@/Components/ui/chart"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/Components/ui/chart"
 
 export const description = "An area chart with gradient fill"
 const chartData = [
-  { month: "Январь", desktop: 57, mobile: 47 },
-  { month: "Февраль", desktop: 34, mobile: 55 },
-  { month: "Март", desktop: 21, mobile: 57 },
-  { month: "Апрель", desktop: 83, mobile: 43 },
-  { month: "Май", desktop: 53, mobile: 80 },
-  { month: "Июнь", desktop: 56, mobile: 91 },
+  { month: "Пн", desktop: 57, mobile: 47 },
+  { month: "Вт", desktop: 34, mobile: 55 },
+  { month: "Ср", desktop: 21, mobile: 57 },
+  { month: "Чт", desktop: 83, mobile: 43 },
+  { month: "Пт", desktop: 53, mobile: 80 },
+  { month: "Сб", desktop: 56, mobile: 91 },
+  { month: "Вс", desktop: 56, mobile: 91 },
 ]
 const chartConfig = {
   desktop: {
@@ -27,9 +27,9 @@ export function ChartAreaGradient() {
   return (
     <Card style={{ width: '600px', height: '400px' }} >
       <CardHeader>
-        <CardTitle>Показатели влажности</CardTitle>
+        <CardTitle>Показатели влажности (%)</CardTitle>
         <CardDescription>
-          За последние 6 месяцев
+          За последнюю неделю
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -96,18 +96,6 @@ export function ChartAreaGradient() {
           </AreaChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-            <div className="flex items-center gap-2 leading-none font-medium">
-              Рост на 5.2% в текущем месяце <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="text-muted-foreground flex items-center gap-2 leading-none">
-              Январь - Июнь 2025
-            </div>
-          </div>
-        </div>
-      </CardFooter>
     </Card>
   )
 }
