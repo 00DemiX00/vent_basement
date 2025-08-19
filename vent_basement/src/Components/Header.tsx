@@ -1,45 +1,31 @@
-import React from 'react';
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "./ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
+import  StatusIndicatorsLine  from "./ui/IndicatorsLine"
 
 function Header() {
   return (
-    <header style={{
+  <header 
+    style={{
         padding: '70px',
         textAlign: 'left',
         fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
-        }}>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-  <h1>Текущая влажность (%):</h1>
-  <h1 style={{ marginLeft: '8px' }}>67</h1>
-</div>
-<div>Информация о работе системы: </div>
-        <Table>
+    }}>
+  <div> 
+  <Table  style={{ width: '20%'}}>
   <TableHeader>
     <TableRow>
-      <TableHead className="w-[100px]">Invoice</TableHead>
-      <TableHead>Status</TableHead>
-      <TableHead>Method</TableHead>
-      <TableHead className="text-right">Amount</TableHead>
+      <TableHead className="w-[100px]">Статус работы датчиков</TableHead>
+      <TableHead><StatusIndicatorsLine></StatusIndicatorsLine></TableHead>
     </TableRow>
   </TableHeader>
   <TableBody>
-    <TableRow>
-      <TableCell className="font-medium">INV001</TableCell>
-      <TableCell>Paid</TableCell>
-      <TableCell>Credit Card</TableCell>
-      <TableCell className="text-right">$250.00</TableCell>
+    <TableRow> 
+      <TableCell className="font-medium">Статус работы вентиляторов</TableCell>
+      <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
     </TableRow>
   </TableBody>
-</Table>
-    </header>
+  </Table>
+  </div>
+</header>
   );
 }
 
