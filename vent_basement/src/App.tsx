@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@/Components/theme-provider"
-import { ChartAreaGradient } from "./Components/ui/example-chart"
-import Header from "./Components/Header"
+import Header from "./Components/IndicatorsLineTable"
+import Dashboard from "./Components/Dashboard"
 
 
 
@@ -8,7 +8,7 @@ export default function App () {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Header></Header>
-      <ChartAreaGradient></ChartAreaGradient>
+      <Dashboard></Dashboard>
     </ThemeProvider>
   )
 }
