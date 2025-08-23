@@ -1,5 +1,5 @@
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "./ui/table"
-import  StatusIndicatorsLine  from "./ui/IndicatorsLine"
+import { Table, TableBody, TableCell, TableRow } from "./ui/table";
+import  StatusIndicatorsLine  from "./ui/IndicatorsLine";
 import WeatherDisplay from "./ui/WeatherDisplay";
 import { Switch } from "./ui/switch";
 

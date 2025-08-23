@@ -5,7 +5,6 @@ function Dashboard() {
   return (
   <div style={{marginLeft: '0px'}}>
     <ChartAreaInteractive></ChartAreaInteractive>
-    <ChartAreaGradient></ChartAreaGradient>
   </div>
   );
 }

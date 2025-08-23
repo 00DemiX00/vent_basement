@@ -126,10 +126,10 @@ export function ChartAreaInteractive() {
     return date >= startDate
   })
   return (
-    <Card className="pt-0">
+    <Card className="aspect-auto w-[1000px]">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1">
-          <CardTitle>Area Chart - Interactive</CardTitle>
+          <CardTitle>Показатели влажности (%)</CardTitle>
           <CardDescription>
             Showing total visitors for the last 3 months
           </CardDescription>
@@ -143,13 +143,13 @@ export function ChartAreaInteractive() {
           </SelectTrigger>
           <SelectContent className="rounded-xl">
             <SelectItem value="90d" className="rounded-lg">
-              Last 3 months
+              3 месяца
             </SelectItem>
             <SelectItem value="30d" className="rounded-lg">
-              Last 30 days
+              30 дней
             </SelectItem>
             <SelectItem value="7d" className="rounded-lg">
-              Last 7 days
+               7 дней
             </SelectItem>
           </SelectContent>
         </Select>
@@ -157,7 +157,7 @@ export function ChartAreaInteractive() {
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[250px] w-full"
+          className="aspect-auto h-[250px]"
         >
           <AreaChart data={filteredData}>
             <defs>
@@ -195,7 +195,7 @@ export function ChartAreaInteractive() {
               minTickGap={32}
               tickFormatter={(value) => {
                 const date = new Date(value)
-                return date.toLocaleDateString("en-US", {
+                return date.toLocaleDateString("ru", {
                   month: "short",
                   day: "numeric",
                 })
@@ -206,7 +206,7 @@ export function ChartAreaInteractive() {
               content={
                 <ChartTooltipContent
                   labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
+                    return new Date(value).toLocaleDateString("ru", {
                       month: "short",
                       day: "numeric",
                     })
