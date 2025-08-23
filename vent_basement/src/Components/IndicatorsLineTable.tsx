@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "./ui/table"
 import  StatusIndicatorsLine  from "./ui/IndicatorsLine"
 import WeatherDisplay from "./ui/WeatherDisplay";
+import { Switch } from "./ui/switch";
 
 function IndicatorsLineTable() {
   return (
@@ -11,24 +12,29 @@ function IndicatorsLineTable() {
         textAlign: 'left',
         fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
     }}>
-  <div style={{ width: '400px', fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}> 
+  <div style={{ width: '600px', fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}> 
   <Table>
-  <TableHeader>
+  <TableBody>
     <TableRow>
-      <TableCell className="w-[100px]">Статус работы датчиков</TableCell>
+      <TableCell className="font-medium">Датчик 1 (пол)</TableCell>
       <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
+      <TableCell className="font-medium">Вентилятор 1</TableCell>
+      <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
+      <TableCell><Switch></Switch></TableCell>
     </TableRow>
-  </TableHeader>
+  </TableBody>
   <TableBody>
     <TableRow> 
-      <TableCell className="font-medium">Статус работы вентиляторов</TableCell>
+      <TableCell className="font-medium">Датчик 2 (подвал)</TableCell>
       <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
+      <TableCell className="font-medium">Вентилятор 2</TableCell>
+      <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
+      <TableCell><Switch></Switch></TableCell>
     </TableRow>
   </TableBody>
   </Table>
   </div>
   <WeatherDisplay></WeatherDisplay>
-
 </header>
   );
 }

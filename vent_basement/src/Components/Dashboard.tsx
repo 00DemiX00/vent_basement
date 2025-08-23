@@ -1,8 +1,10 @@
-import { ChartAreaGradient } from "./ui/example-chart"
+import { ChartAreaGradient } from "./ui/mini-chart"
+import { ChartAreaInteractive } from "./ui/interactive-chart";
 
 function Dashboard() {
   return (
-  <div style={{marginLeft: '70px'}}>
+  <div style={{marginLeft: '0px'}}>
+    <ChartAreaInteractive></ChartAreaInteractive>
     <ChartAreaGradient></ChartAreaGradient>
   </div>
   );
