@@ -91,4 +91,3 @@ const StatusIndicatorsLine = () => {
 };
 
 export default StatusIndicatorsLine; 
-// Экспортируем компонент под новым названием, чтобы его можно было использовать в других частях проекта.

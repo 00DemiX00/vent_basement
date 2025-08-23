@@ -11,13 +11,12 @@ function IndicatorsLineTable() {
         textAlign: 'left',
         fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
     }}>
-  <div style={{ width: '600px', fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}> 
+  <div style={{ width: '400px', fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}> 
   <Table>
   <TableHeader>
     <TableRow>
       <TableCell className="w-[100px]">Статус работы датчиков</TableCell>
       <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
-      <WeatherDisplay></WeatherDisplay>
     </TableRow>
   </TableHeader>
   <TableBody>
@@ -28,6 +27,8 @@ function IndicatorsLineTable() {
   </TableBody>
   </Table>
   </div>
+  <WeatherDisplay></WeatherDisplay>
+
 </header>
   );
 }
