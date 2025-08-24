@@ -99,15 +99,15 @@ const chartData = [
 ]
 const chartConfig = {
   visitors: {
-    label: "Visitors",
+    label: "Влажность",
   },
   desktop: {
     label: "Д2 (подвал)",
-    color: "var(--chart-1)",
+    color: "var(--chart-2)",
   },
   mobile: {
     label: "Д1 (пол)",
-    color: "var(--chart-2)",
+    color: "var(--chart-1)",
   },
 } satisfies ChartConfig
 export function ChartAreaInteractive() {
@@ -126,12 +126,12 @@ export function ChartAreaInteractive() {
     return date >= startDate
   })
   return (
-    <Card className="aspect-auto w-[1000px]">
+    <Card className="aspect-auto w-[950px]">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1">
           <CardTitle>Показатели влажности (%)</CardTitle>
           <CardDescription>
-            Showing total visitors for the last 3 months
+            С обоих датчиков за период времени 
           </CardDescription>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
@@ -157,7 +157,7 @@ export function ChartAreaInteractive() {
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[250px]"
+          className="aspect-auto h-[300px]"
         >
           <AreaChart data={filteredData}>
             <defs>
