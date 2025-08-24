@@ -13,7 +13,7 @@ function Dashboard() {
   <div style={{ width: '2000px', display: "flex",
     fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}>
     <ChartAreaInteractive></ChartAreaInteractive>
-    <ChartBarMultiple></ChartBarMultiple>
+    <div style={{ marginLeft: '20px' }}><ChartBarMultiple></ChartBarMultiple></div>
   </div>
 </header>
   );
