@@ -12,29 +12,32 @@ function IndicatorsLineTable() {
         textAlign: 'left',
         fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
     }}>
-  <div style={{ width: '600px', fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}> 
+  <div style={{ width: '800px', fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}> 
   <Table>
   <TableBody>
     <TableRow>
       <TableCell className="font-medium">Датчик 1 (пол)</TableCell>
       <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
-      <TableCell className="font-medium">Вентилятор 1</TableCell>
+      <WeatherDisplay></WeatherDisplay>
+      <TableCell className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "30px" }}>Вентилятор 1</TableCell>
       <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
       <TableCell><Switch></Switch></TableCell>
+
     </TableRow>
   </TableBody>
   <TableBody>
     <TableRow> 
-      <TableCell className="font-medium">Датчик 2 (подвал)</TableCell>
+      <TableCell className="font-medium" >Датчик 2 (подвал)</TableCell>
       <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
-      <TableCell className="font-medium">Вентилятор 2</TableCell>
+      <WeatherDisplay></WeatherDisplay>
+      <TableCell className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "30px" }}>Вентилятор 2</TableCell>
       <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
       <TableCell><Switch></Switch></TableCell>
+
     </TableRow>
   </TableBody>
   </Table>
   </div>
-  <WeatherDisplay></WeatherDisplay>
 </header>
   );
 }

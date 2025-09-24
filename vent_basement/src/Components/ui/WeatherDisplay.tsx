@@ -87,7 +87,7 @@ const WeatherDisplay: React.FC = () => {
       justifyContent:'center',   // по центру
       gap:'30px',                // расстояние между элементами
       fontFamily:'"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
-      fontSize:'1.2em'
+      fontSize:'1.0em'
     }}>
       <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
         <span style={{ fontWeight:'bold', marginBottom:'8px' }}>Температура</span>
