@@ -17,17 +17,21 @@ function IndicatorsLineTable() {
   <TableBody>
     <TableRow>
       <TableCell 
-        className="font-medium" style={{ borderRight: "1px solid #373737", paddingLeft: "40px", paddingRight: "30px" }}>ESP32
+        className="font-medium" style={{ borderRight: "1px solid #373737", paddingLeft: "30px"}}>ESP32
       </TableCell>
-      <TableCell className="font-medium" style={{ paddingLeft: "45px", paddingRight: "30px" }}>Датчик 1 (пол)</TableCell>
+      <TableCell 
+        className="font-medium" style={{ paddingLeft: "20px"}}>Датчик 1 (пол)
+      </TableCell>
       <TableCell><IndicatorsLine device="sensor" status="working"></IndicatorsLine></TableCell>
       <WeatherDisplay></WeatherDisplay>
       <TableCell 
-        className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "30px" }}>Вентилятор 1
+        className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "20px" }}>Вентилятор 1
       </TableCell>
       <TableCell><IndicatorsLine device="fan" status="on"></IndicatorsLine></TableCell>
+      <TableCell className="font-medium">АВТО</TableCell>
       <TableCell><Switch></Switch></TableCell>
-      <TableCell><Switch></Switch></TableCell>
+      <TableCell className="font-medium">РУЧНОЙ</TableCell>
+      <TableCell style={{ paddingLeft: "10px"}}><Switch></Switch></TableCell>
     </TableRow>
   </TableBody>
   <TableBody>
@@ -35,14 +39,18 @@ function IndicatorsLineTable() {
       <TableCell 
         className="font-medium" style={{ borderRight: "1px solid #373737"}}><IndicatorsLine device="esp32" status="on"></IndicatorsLine>
       </TableCell>
-      <TableCell className="font-medium" style={{ paddingLeft: "45px", paddingRight: "30px" }}>Датчик 2 (подвал)</TableCell>
+      <TableCell 
+        className="font-medium" style={{ paddingLeft: "20px", paddingRight: "20px" }}>Датчик 2 (подвал)
+      </TableCell>
       <TableCell><IndicatorsLine device="sensor" status="working"></IndicatorsLine></TableCell>
       <WeatherDisplay></WeatherDisplay>
       <TableCell 
-        className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "30px" }}>Вентилятор 2
+        className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "20px" }}>Вентилятор 2
       </TableCell>
       <TableCell><IndicatorsLine device="fan" status="off"></IndicatorsLine></TableCell>
+      <TableCell>АВТО</TableCell>
       <TableCell><Switch></Switch></TableCell>
+      <TableCell style={{ paddingLeft: "10px"}}>РУЧНОЙ</TableCell>
       <TableCell><Switch></Switch></TableCell>
     </TableRow>
   </TableBody>
