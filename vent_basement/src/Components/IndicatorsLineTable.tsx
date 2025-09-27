@@ -16,12 +16,12 @@ function IndicatorsLineTable() {
   <Table>
   <TableBody>
     <TableRow>
-      <TableCell className="font-medium">Датчик 1 (пол)</TableCell>
+      <TableCell 
+        className="font-medium" style={{ borderRight: "1px solid #373737", paddingLeft: "40px", paddingRight: "30px" }}>ESP32
+      </TableCell>
+      <TableCell className="font-medium" style={{ paddingLeft: "45px", paddingRight: "30px" }}>Датчик 1 (пол)</TableCell>
       <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
       <WeatherDisplay></WeatherDisplay>
-      <TableCell 
-        className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "45px", paddingRight: "30px" }}>ESP32
-      </TableCell>
       <TableCell 
         className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "30px" }}>Вентилятор 1
       </TableCell>
@@ -31,12 +31,12 @@ function IndicatorsLineTable() {
   </TableBody>
   <TableBody>
     <TableRow> 
-      <TableCell className="font-medium" >Датчик 2 (подвал)</TableCell>
+      <TableCell 
+        className="font-medium" style={{ borderRight: "1px solid #373737"}}><StatusIndicatorsLine></StatusIndicatorsLine>
+      </TableCell>
+      <TableCell className="font-medium" style={{ paddingLeft: "45px", paddingRight: "30px" }}>Датчик 2 (подвал)</TableCell>
       <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
       <WeatherDisplay></WeatherDisplay>
-      <TableCell 
-        className="font-medium" style={{ borderLeft: "1px solid #373737"}}><StatusIndicatorsLine></StatusIndicatorsLine>
-      </TableCell>
       <TableCell 
         className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "30px" }}>Вентилятор 2
       </TableCell>
