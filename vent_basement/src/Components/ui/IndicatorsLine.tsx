@@ -1,82 +1,91 @@
-import { useState, useEffect } from 'react';
+// Типы для устройств и статусов
+type DeviceType = 'esp32' | 'sensor' | 'fan';
 
-// Массив возможных статусов системы
-const statuses = ['working', 'error', 'offline'] as const;
-// Определяем тип для статусов на основе массива
-type Status = typeof statuses[number];
+// Отдельные типы статусов для разных устройств
+type ESPFanStatus = 'on' | 'off';
+type SensorStatus = 'working' | 'error' | 'offline';
 
-// Функция для получения цвета линии в зависимости от текущего статуса
-const getColor = (status: Status) => {
-  switch (status) {
-    case 'working':
-      return '#4CAF50'; // зеленый цвет для рабочего состояния
-    case 'error':
-      return '#FFC107'; // желтый цвет для ошибок
-    case 'offline':
-      return '#F44336'; // красный цвет для оффлайна
+// Тип, сопоставляющий устройство с соответствующим набором статусов
+type StatusByDevice<T extends DeviceType> =
+  T extends 'esp32' | 'fan' ? ESPFanStatus :
+  T extends 'sensor' ? SensorStatus :
+  never;
+
+// Функция для получения цвета индикатора на основе типа устройства и его статуса
+const getColor = <T extends DeviceType>(device: T, status: StatusByDevice<T>): string => {
+  switch (device) {
+    case 'esp32':
+    case 'fan':
+      // Для esp32 и fan возможные статусы: 'on' и 'off'
+      if (status === 'on') return '#4CAF50';      // Зеленый, если устройство включено
+      if (status === 'off') return '#F44336';     // Красный, если выключено
+      if (status === 'offline') return '#9E9E9E'; // Серый, если офлайн (на всякий случай)
+      return '#9E9E9E';                           // Цвет по умолчанию (серый)
+    case 'sensor':
+      // Для сенсора возможные статусы: 'working', 'error', 'offline'
+      if (status === 'working') return '#4CAF50';    // Зеленый — работает
+      if (status === 'error') return '#FFC107';   // Желтый — ошибка
+      if (status === 'offline') return '#9E9E9E'; // Серый — офлайн
+      return '#9E9E9E';                           // Цвет по умолчанию
+    default:
+      return '#9E9E9E';                           // Цвет по умолчанию, если device не подходит
   }
 };
 
-// Основной компонент - индикатор с линиями, меняющими цвет в зависимости от статуса
-const StatusIndicatorsLine = () => {
-  // Хук состояния для хранения текущего индекса статуса
-  const [statusIndex, setStatusIndex] = useState(0);
-  // Получаем текущий статус по индексу
-  const currentStatus = statuses[statusIndex];
+// Интерфейс пропсов компонента, параметризованный типом устройства
+interface IndicatorsLineProps<T extends DeviceType> {
+  device: T;                          // Тип устройства
+  status: StatusByDevice<T>;          // Статус, валидный для данного устройства
+  linesCount?: number;                // Количество линий (индикаторов) (необязательно, по умолчанию 4)
+}
 
-  // Используем useEffect для автоматической смены статуса каждые 3 секунды
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Переключение на следующий статус по кругу
-      setStatusIndex((prev) => (prev + 1) % statuses.length);
-    }, 3000); // интервал в миллисекундах
-
-    // Очистка интервала при размонтировании компонента, чтобы избежать утечек памяти
-    return () => clearInterval(interval);
-  }, []);
-
-  const linesCount = 4; // Количество линий для анимации
+// React-компонент индикатора со столбцами-сигналами,
+// высота и анимация которых зависят от индекса
+const IndicatorsLine = <T extends DeviceType>({ device, status, linesCount = 4 }: IndicatorsLineProps<T>) => {
+  // Получаем цвет для текущего статуса и устройства
+  const color = getColor(device, status);
 
   return (
     <div style={{
-      padding: '5px', // внутренние отступы вокруг всего блока
-      display: 'flex', // использование flexbox для центрирования содержимого
+      padding: '5px',
+      display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: 'Arial, sans-serif', // шрифт по умолчанию
+      fontFamily: 'Arial, sans-serif', // Шрифт для компонента
     }}>
-      
-      {/* Контейнер с линиями-индикаторами */}
       <div style={{
-        display: 'flex', // горизонтальное расположение линий
-        gap: '6px', // промежутки между линиями
+        display: 'flex',
+        gap: '6px',               // Расстояние между индикаторами
         alignItems: 'center'
       }}>
-        {/* Генерируем массив линий динамически */}
         {Array.from({ length: linesCount }).map((_, i) => (
-          <div key={i} style={{
-            width: '12px', // ширина каждой линии
-            height: `${6 + i * 2}px`, // высота линий с увеличением по порядку (для визуального эффекта)
-            backgroundColor: getColor(currentStatus), // цвет линии зависит от текущего статуса
-            borderRadius: '3px', // скругление углов линий для более мягкого вида
-            animation: `pulse ${0.8 + i * 0.2}s infinite ease-in-out`, 
-            // анимация пульсации с разной длительностью для каждой линии
-
-            animationDelay: `${i * 0.2}s`, 
-            // задержка перед началом анимации каждой линии — создаёт эффект последовательности
-          }} />
+          <div
+            key={i}
+            style={{
+              width: '12px',                      // Ширина полоски
+              height: `${6 + i * 2}px`,           // Высота полоски растет с индексом
+              backgroundColor: color,             // Цвет полоски
+              borderRadius: '3px',                // Закругленные края
+              animation: `pulse ${0.8 + i * 0.2}s infinite ease-in-out`, // Анимация пульсации с задержкой
+              animationDelay: `${i * 0.2}s`,     // Задержка анимации, чтобы создать волнообразный эффект
+            }}
+          />
         ))}
       </div>
 
-      {/* Текстовое отображение текущего статуса */}
-      <p style={{ color:'#fff', marginTop:'15px', fontSize:'1em',
-        fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
-       }}>
-        <strong>{currentStatus.toUpperCase()}</strong>
+      {/* Текст, отображающий текущий статус большими буквами */}
+      <p style={{
+        color: '#fff',
+        marginTop: '15px',
+        fontSize: '1em',
+        fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+        userSelect: 'none', // Запрет выделения текста для красоты
+      }}>
+        <strong>{(status as string).toUpperCase()}</strong>
       </p>
 
-      {/* Определение ключевых кадров анимации пульсации */}
+      {/* Ключевые кадры анимации пульсации */}
       <style>
         {`
           @keyframes pulse {
@@ -90,4 +99,4 @@ const StatusIndicatorsLine = () => {
   );
 };
 
-export default StatusIndicatorsLine; 
+export default IndicatorsLine;

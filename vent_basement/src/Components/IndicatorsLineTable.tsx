@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableRow } from "./ui/table";
-import  StatusIndicatorsLine  from "./ui/IndicatorsLine";
+import IndicatorsLine from "./ui/IndicatorsLine";
 import WeatherDisplay from "./ui/WeatherDisplay";
 import { Switch } from "./ui/switch";
 
@@ -12,7 +12,7 @@ function IndicatorsLineTable() {
         textAlign: 'left',
         fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
     }}>
-  <div style={{ width: '1000px', fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}> 
+  <div style={{ width: '1100px', fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}> 
   <Table>
   <TableBody>
     <TableRow>
@@ -20,27 +20,29 @@ function IndicatorsLineTable() {
         className="font-medium" style={{ borderRight: "1px solid #373737", paddingLeft: "40px", paddingRight: "30px" }}>ESP32
       </TableCell>
       <TableCell className="font-medium" style={{ paddingLeft: "45px", paddingRight: "30px" }}>Датчик 1 (пол)</TableCell>
-      <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
+      <TableCell><IndicatorsLine device="sensor" status="working"></IndicatorsLine></TableCell>
       <WeatherDisplay></WeatherDisplay>
       <TableCell 
         className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "30px" }}>Вентилятор 1
       </TableCell>
-      <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
+      <TableCell><IndicatorsLine device="fan" status="on"></IndicatorsLine></TableCell>
+      <TableCell><Switch></Switch></TableCell>
       <TableCell><Switch></Switch></TableCell>
     </TableRow>
   </TableBody>
   <TableBody>
     <TableRow> 
       <TableCell 
-        className="font-medium" style={{ borderRight: "1px solid #373737"}}><StatusIndicatorsLine></StatusIndicatorsLine>
+        className="font-medium" style={{ borderRight: "1px solid #373737"}}><IndicatorsLine device="esp32" status="on"></IndicatorsLine>
       </TableCell>
       <TableCell className="font-medium" style={{ paddingLeft: "45px", paddingRight: "30px" }}>Датчик 2 (подвал)</TableCell>
-      <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
+      <TableCell><IndicatorsLine device="sensor" status="working"></IndicatorsLine></TableCell>
       <WeatherDisplay></WeatherDisplay>
       <TableCell 
         className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "30px" }}>Вентилятор 2
       </TableCell>
-      <TableCell><StatusIndicatorsLine></StatusIndicatorsLine></TableCell>
+      <TableCell><IndicatorsLine device="fan" status="off"></IndicatorsLine></TableCell>
+      <TableCell><Switch></Switch></TableCell>
       <TableCell><Switch></Switch></TableCell>
     </TableRow>
   </TableBody>
