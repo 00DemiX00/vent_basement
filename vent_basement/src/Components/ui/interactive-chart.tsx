@@ -7,18 +7,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 export const description = "An interactive area chart"
 
 const chartData = [
-  { date: "2024-04-01", desktop: 81, mobile: 57, fan1: 0, fan2: 1 },
-  { date: "2024-04-02", desktop: 57, mobile: 57, fan1: 0, fan2: 1 },
-  { date: "2024-04-03", desktop: 80, mobile: 80, fan1: 0, fan2: 1  },
-  { date: "2024-04-04", desktop: 242, mobile: 242, fan1: 0, fan2: 1  },
-  { date: "2024-04-05", desktop: 373, mobile: 373, fan1: 0, fan2: 1  },
-  { date: "2024-04-06", desktop: 301, mobile: 301, fan1: 0, fan2: 1  },
-  { date: "2024-04-07", desktop: 245, mobile: 180, fan1: 0, fan2: 1  },
-  { date: "2024-04-08", desktop: 409, mobile: 320, fan1: 0, fan2: 1  },
-  { date: "2024-04-09", desktop: 59, mobile: 110, fan1: 0, fan2: 1  },
-  { date: "2024-04-10", desktop: 261, mobile: 190, fan1: 0, fan2: 1  },
-  { date: "2024-04-11", desktop: 327, mobile: 350, fan1: 0, fan2: 1  },
-  { date: "2024-04-12", desktop: 292, mobile: 210, fan1: 0, fan2: 1  },
+  { date: "2024-04-01", desktop: 81, mobile: 57, fan1: 1, fan2: 0 },
+  { date: "2024-04-02", desktop: 57, mobile: 57, fan1: 1, fan2: 0 },
+  { date: "2024-04-03", desktop: 80, mobile: 80, fan1: 1, fan2: 0  },
+  { date: "2024-04-04", desktop: 242, mobile: 242, fan1: 1, fan2: 0  },
+  { date: "2024-04-05", desktop: 373, mobile: 373, fan1: 1, fan2: 0  },
+  { date: "2024-04-06", desktop: 301, mobile: 301, fan1: 1, fan2: 0  },
+  { date: "2024-04-07", desktop: 245, mobile: 180, fan1: 0, fan2: 0  },
+  { date: "2024-04-08", desktop: 409, mobile: 320, fan1: 0, fan2: 0  },
+  { date: "2024-04-09", desktop: 59, mobile: 110, fan1: 1, fan2: 1  },
+  { date: "2024-04-10", desktop: 261, mobile: 190, fan1: 1, fan2: 1  },
+  { date: "2024-04-11", desktop: 327, mobile: 350, fan1: 1, fan2: 1  },
+  { date: "2024-04-12", desktop: 292, mobile: 210, fan1: 1, fan2: 1  },
   { date: "2024-04-13", desktop: 342, mobile: 380, fan1: 0, fan2: 1  },
   { date: "2024-04-14", desktop: 137, mobile: 220, fan1: 0, fan2: 1  },
   { date: "2024-04-15", desktop: 120, mobile: 170, fan1: 0, fan2: 1  },
@@ -27,9 +27,9 @@ const chartData = [
   { date: "2024-04-18", desktop: 364, mobile: 410, fan1: 0, fan2: 1 },
   { date: "2024-04-19", desktop: 243, mobile: 180, fan1: 0, fan2: 1  },
   { date: "2024-04-20", desktop: 89, mobile: 150, fan1: 0, fan2: 1  },
-  { date: "2024-04-21", desktop: 137, mobile: 200, fan1: 0, fan2: 1  },
-  { date: "2024-04-22", desktop: 224, mobile: 170, fan1: 0, fan2: 1  },
-  { date: "2024-04-23", desktop: 138, mobile: 230, fan1: 0, fan2: 1  },
+  { date: "2024-04-21", desktop: 137, mobile: 200, fan1: 0, fan2: 0  },
+  { date: "2024-04-22", desktop: 224, mobile: 170, fan1: 0, fan2: 0 },
+  { date: "2024-04-23", desktop: 138, mobile: 230, fan1: 0, fan2: 0  },
   { date: "2024-04-24", desktop: 387, mobile: 290, fan1: 0, fan2: 1  },
   { date: "2024-04-25", desktop: 215, mobile: 250, fan1: 0, fan2: 1  },
   { date: "2024-04-26", desktop: 75, mobile: 130, fan1: 0, fan2: 1  },
@@ -130,6 +130,13 @@ export function ChartAreaInteractive() {
     startDate.setDate(startDate.getDate() - daysToSubtract)
     return date >= startDate
   })
+  const isFan1On = filteredData.some((item) => item.fan1 === 1)
+  const isFan2On = filteredData.some((item) => item.fan2 === 1)
+  const transformedData = filteredData.map((item) => ({
+    ...item,
+    fan1: item.fan1 === 1 ? 1 : null,
+    fan2: item.fan2 === 1 ? 1 : null,
+  }))
   return (
     <Card className="aspect-auto w-[950px]">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
@@ -162,9 +169,9 @@ export function ChartAreaInteractive() {
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[300px]"
-        >
-          <AreaChart data={filteredData}>
+          className="aspect-auto h-[300px]">
+          
+          <AreaChart data={transformedData}>
             <defs>
               <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
                 <stop
@@ -190,14 +197,6 @@ export function ChartAreaInteractive() {
                   stopOpacity={0.1}
                 />
               </linearGradient>
-               <linearGradient id="colorFan1" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#999999" stopOpacity={0.1} />
-                  <stop offset="95%" stopColor="#999999" stopOpacity={0} />
-                </linearGradient>
-                <linearGradient id="colorFan2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#CCCCCC" stopOpacity={0.05} />
-                  <stop offset="95%" stopColor="#CCCCCC" stopOpacity={0} />
-                </linearGradient>
             </defs>
             <CartesianGrid vertical={false} />
             <XAxis
@@ -242,22 +241,27 @@ export function ChartAreaInteractive() {
               stroke="var(--color-desktop)"
               stackId="a"
             />
-            <Area
+            {(isFan1On ?? false) && (
+              <Area
               yAxisId="rightFan"
               type="linear"
               dataKey="fan1"
-              stroke="#4bcef3"
+              stroke="#11ff00"
               fillOpacity={0.3}
               fill="url(#colorFan1)"
             />
-            <Area
+            )}
+            {(isFan2On ?? false) && (
+              <Area
               yAxisId="rightFan"
               type="linear"
               dataKey="fan2"
-              stroke="#ffab6b"
+              stroke="#eeff00"
               fillOpacity={0.3}
               fill="url(#colorFan2)"
             />
+            )}
+            
           <ChartLegend content={<ChartLegendContent />} />
           </AreaChart>
         </ChartContainer>
