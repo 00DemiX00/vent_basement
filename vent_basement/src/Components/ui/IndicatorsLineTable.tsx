@@ -1,7 +1,7 @@
-import { Table, TableBody, TableCell, TableRow } from "./ui/table";
-import IndicatorsLine from "./ui/IndicatorsLine";
-import WeatherDisplay from "./ui/WeatherDisplay";
-import { Switch } from "./ui/switch";
+import { Table, TableBody, TableCell, TableRow } from "../shadcn-base/table";
+import IndicatorsLine from "./IndicatorsLine";
+import WeatherDisplay from "./temperature-humidity-display";
+import { Switch } from "../shadcn-base/switch";
 
 function IndicatorsLineTable() {
   return (
@@ -37,7 +37,7 @@ function IndicatorsLineTable() {
   <TableBody>
     <TableRow> 
       <TableCell 
-        className="font-medium" style={{ borderRight: "1px solid #373737"}}><IndicatorsLine device="esp32" status="on"></IndicatorsLine>
+        className="font-medium" style={{ borderRight: "1px solid #373737"}}><IndicatorsLine device="esp32" status="online"></IndicatorsLine>
       </TableCell>
       <TableCell 
         className="font-medium" style={{ paddingLeft: "20px", paddingRight: "20px" }}>Датчик 2 (подвал)

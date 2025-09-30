@@ -1,7 +1,7 @@
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/Components/ui/card"
-import { type ChartConfig } from "@/Components/ui/chart"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/Components/ui/chart"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/Components/shadcn-base/card"
+import { type ChartConfig } from "@/Components/shadcn-base/chart"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/Components/shadcn-base/chart"
 
 export const description = "An area chart with gradient fill"
 const chartData = [

@@ -1,5 +1,5 @@
-import { ThemeProvider } from "@/Components/theme-provider"
-import Header from "./Components/IndicatorsLineTable"
+import { ThemeProvider } from "@/Components/shadcn-base/theme-provider"
+import Header from "./Components/ui/IndicatorsLineTable"
 import Dashboard from "./Components/Dashboard"
 
 

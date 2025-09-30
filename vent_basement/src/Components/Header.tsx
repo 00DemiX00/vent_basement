@@ -1,4 +1,4 @@
-import IndicatorsLineTable from "./IndicatorsLineTable";
+import IndicatorsLineTable from "./ui/IndicatorsLineTable";
 
 function Header() {
   return (

@@ -1,8 +1,8 @@
 import * as React from "react"
 import { Area, AreaChart, CartesianGrid, XAxis} from "recharts"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card"
-import { type ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "./chart"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../shadcn-base/card"
+import { type ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "../shadcn-base/chart"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../shadcn-base/select"
 
 export const description = "An interactive area chart"
 
@@ -226,16 +226,16 @@ const transformedData = filteredData.map((item) => ({
               type="step"
               dataKey="fan1"
               stroke="#0008ff96"
-              strokeDasharray="4 2" // пунктирная линия
-              strokeOpacity={0.6}   // чуть прозрачнее
-              fill="rgba(0, 0, 250, 0.15)" // можно сделать без заливки
+              strokeDasharray="4 2"
+              strokeOpacity={0.6}   
+              fill="rgba(0, 0, 250, 0.15)" 
             />
             <Area
               yAxisId="rightFan"
               type="step"
               dataKey="fan2"
               stroke="#33ff0071"
-              strokeDasharray="4 2" // пунктирная линия
+              strokeDasharray="4 2"
               strokeOpacity={0.6}
               fill="rgba(0, 255, 0, 0.1)"
             />

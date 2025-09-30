@@ -1,6 +1,6 @@
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card"
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "./chart"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../shadcn-base/card"
+import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "../shadcn-base/chart"
 
 export const description = "Температура"
 

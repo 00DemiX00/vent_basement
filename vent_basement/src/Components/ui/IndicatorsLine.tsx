@@ -2,31 +2,35 @@
 type DeviceType = 'esp32' | 'sensor' | 'fan';
 
 // Отдельные типы статусов для разных устройств
-type ESPFanStatus = 'on' | 'off';
+type FanStatus = 'on' | 'off';
 type SensorStatus = 'working' | 'error' | 'offline';
+type ESP32Status = 'online' | 'offline';
 
 // Тип, сопоставляющий устройство с соответствующим набором статусов
 type StatusByDevice<T extends DeviceType> =
-  T extends 'esp32' | 'fan' ? ESPFanStatus :
+  T extends  'fan' ? FanStatus :
   T extends 'sensor' ? SensorStatus :
+  T extends 'esp32' ? ESP32Status :
   never;
 
 // Функция для получения цвета индикатора на основе типа устройства и его статуса
 const getColor = <T extends DeviceType>(device: T, status: StatusByDevice<T>): string => {
   switch (device) {
-    case 'esp32':
     case 'fan':
       // Для esp32 и fan возможные статусы: 'on' и 'off'
       if (status === 'on') return '#4CAF50';      // Зеленый, если устройство включено
       if (status === 'off') return '#F44336';     // Красный, если выключено
-      if (status === 'offline') return '#9E9E9E'; // Серый, если офлайн (на всякий случай)
       return '#9E9E9E';                           // Цвет по умолчанию (серый)
     case 'sensor':
       // Для сенсора возможные статусы: 'working', 'error', 'offline'
       if (status === 'working') return '#4CAF50';    // Зеленый — работает
       if (status === 'error') return '#FFC107';   // Желтый — ошибка
-      if (status === 'offline') return '#9E9E9E'; // Серый — офлайн
-      return '#9E9E9E';                           // Цвет по умолчанию
+      if (status === 'offline') return '#F44336'; // Серый — офлайн
+      return '#9E9E9E';                         // Цвет по умолчанию
+    case 'esp32':
+      if (status === 'online') return '#4CAF50';    // Зеленый — работает
+      if (status === 'offline') return '#F44336';     // Красный, если выключено
+      return '#9E9E9E';    
     default:
       return '#9E9E9E';                           // Цвет по умолчанию, если device не подходит
   }
