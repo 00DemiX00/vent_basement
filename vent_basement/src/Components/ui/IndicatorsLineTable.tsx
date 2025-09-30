@@ -48,9 +48,9 @@ function IndicatorsLineTable() {
         className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "20px" }}>Вентилятор 2
       </TableCell>
       <TableCell><IndicatorsLine device="fan" status="off"></IndicatorsLine></TableCell>
-      <TableCell>АВТО</TableCell>
+      <TableCell className="font-medium">АВТО</TableCell>
       <TableCell><Switch></Switch></TableCell>
-      <TableCell style={{ paddingLeft: "10px"}}>РУЧНОЙ</TableCell>
+      <TableCell className="font-medium" style={{ paddingLeft: "10px"}}>РУЧНОЙ</TableCell>
       <TableCell><Switch></Switch></TableCell>
     </TableRow>
   </TableBody>
