@@ -1,53 +1,66 @@
+import { useContext } from 'react';
+import { Esp32Context } from './Esp32Context';
+
 // Типы для устройств и статусов
 type DeviceType = 'esp32' | 'sensor' | 'fan';
 
-// Отдельные типы статусов для разных устройств
 type FanStatus = 'on' | 'off';
 type SensorStatus = 'working' | 'error' | 'offline';
 type ESP32Status = 'online' | 'offline';
 
-// Тип, сопоставляющий устройство с соответствующим набором статусов
 type StatusByDevice<T extends DeviceType> =
-  T extends  'fan' ? FanStatus :
+  T extends 'fan' ? FanStatus :
   T extends 'sensor' ? SensorStatus :
   T extends 'esp32' ? ESP32Status :
   never;
 
-// Функция для получения цвета индикатора на основе типа устройства и его статуса
+// Функция для получения цвета в зависимости от устройства и его статуса
 const getColor = <T extends DeviceType>(device: T, status: StatusByDevice<T>): string => {
   switch (device) {
     case 'fan':
-      // Для esp32 и fan возможные статусы: 'on' и 'off'
-      if (status === 'on') return '#4CAF50';      // Зеленый, если устройство включено
-      if (status === 'off') return '#F44336';     // Красный, если выключено
-      return '#9E9E9E';                           // Цвет по умолчанию (серый)
+      if (status === 'on') return '#4CAF50';      // зелёный
+      if (status === 'off') return '#F44336';     // красный
+      return '#9E9E9E';                           // серый по умолчанию
     case 'sensor':
-      // Для сенсора возможные статусы: 'working', 'error', 'offline'
-      if (status === 'working') return '#4CAF50';    // Зеленый — работает
-      if (status === 'error') return '#FFC107';   // Желтый — ошибка
-      if (status === 'offline') return '#F44336'; // Серый — офлайн
-      return '#9E9E9E';                         // Цвет по умолчанию
+      if (status === 'working') return '#4CAF50';    // зелёный
+      if (status === 'error') return '#FFC107';      // жёлтый
+      if (status === 'offline') return '#F44336';    // красный
+      return '#9E9E9E';
     case 'esp32':
-      if (status === 'online') return '#4CAF50';    // Зеленый — работает
-      if (status === 'offline') return '#F44336';     // Красный, если выключено
-      return '#9E9E9E';    
+      if (status === 'online') return '#4CAF50';     // зелёный
+      if (status === 'offline') return '#F44336';    // красный
+      return '#9E9E9E';
     default:
-      return '#9E9E9E';                           // Цвет по умолчанию, если device не подходит
+      return '#9E9E9E'; // на всякий случай
   }
 };
 
-// Интерфейс пропсов компонента, параметризованный типом устройства
+// Интефейс пропсов компонента
 interface IndicatorsLineProps<T extends DeviceType> {
-  device: T;                          // Тип устройства
-  status: StatusByDevice<T>;          // Статус, валидный для данного устройства
-  linesCount?: number;                // Количество линий (индикаторов) (необязательно, по умолчанию 4)
+  device: T;                                                 // тип устройства
+  status: StatusByDevice<T>;                                   // статус, валидный для данного устройства
+  linesCount?: number;                                         // сколько линий показать (по умолчанию 4)
+  isEsp32On: boolean;                                          // флаг, включён ли ESP32
 }
 
-// React-компонент индикатора со столбцами-сигналами,
-// высота и анимация которых зависят от индекса
+// Функция возвращает текст статуса при выключенном esp32
+function getDisplayStatusWhenEsp32Off(device: DeviceType): string {
+  switch (device) {
+    case 'fan': return 'OFF';
+    case 'sensor': return 'OFFLINE';
+    case 'esp32': return 'OFFLINE';
+    default: return 'OFFLINE';
+  }
+}
+
 const IndicatorsLine = <T extends DeviceType>({ device, status, linesCount = 4 }: IndicatorsLineProps<T>) => {
-  // Получаем цвет для текущего статуса и устройства
-  const color = getColor(device, status);
+  const { isEsp32On } = useContext(Esp32Context);
+
+  // выбираем цвет: если esp32 выключен, всегда красный
+  const color = !isEsp32On ? '#F44336' : getColor(device, status);
+
+  // определение статуса в зависимости от состояния esp32
+  const displayStatus = !isEsp32On ? getDisplayStatusWhenEsp32Off(device) : status.toString().toUpperCase();
 
   return (
     <div style={{
@@ -56,49 +69,48 @@ const IndicatorsLine = <T extends DeviceType>({ device, status, linesCount = 4 }
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: 'Arial, sans-serif', // Шрифт для компонента
+      fontFamily: 'Arial, sans-serif'
     }}>
+      {/* Индикаторы */}
       <div style={{
         display: 'flex',
-        gap: '6px',               // Расстояние между индикаторами
+        gap: '6px',
         alignItems: 'center'
       }}>
         {Array.from({ length: linesCount }).map((_, i) => (
           <div
             key={i}
             style={{
-              width: '12px',                      // Ширина полоски
-              height: `${6 + i * 2}px`,           // Высота полоски растет с индексом
-              backgroundColor: color,             // Цвет полоски
-              borderRadius: '3px',                // Закругленные края
-              animation: `pulse ${0.8 + i * 0.2}s infinite ease-in-out`, // Анимация пульсации с задержкой
-              animationDelay: `${i * 0.2}s`,     // Задержка анимации, чтобы создать волнообразный эффект
+              width: '12px',
+              height: `${6 + i * 2}px`,
+              backgroundColor: color,
+              borderRadius: '3px',
+              animation: `pulse ${0.8 + i * 0.2}s infinite ease-in-out`,
+              animationDelay: `${i * 0.2}s`
             }}
           />
         ))}
       </div>
 
-      {/* Текст, отображающий текущий статус большими буквами */}
+      {/* Статусный текст */}
       <p style={{
         color: '#fff',
         marginTop: '15px',
         fontSize: '1em',
         fontFamily: 'ui-sans-serif, system-ui, sans-serif',
-        userSelect: 'none', // Запрет выделения текста для красоты
+        userSelect: 'none'
       }}>
-        <strong>{(status as string).toUpperCase()}</strong>
+        <strong>{displayStatus}</strong>
       </p>
 
-      {/* Ключевые кадры анимации пульсации */}
-      <style>
-        {`
-          @keyframes pulse {
-            0% { transform: scaleY(1); opacity: 1; }
-            50% { transform: scaleY(1.5); opacity: 0.6; }
-            100% { transform: scaleY(1); opacity: 1; }
-          }
-        `}
-      </style>
+      {/* Анимация пульсации */}
+      <style>{`
+        @keyframes pulse {
+          0% { transform: scaleY(1); opacity: 1; }
+          50% { transform: scaleY(1.5); opacity: 0.6; }
+          100% { transform: scaleY(1); opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 };
