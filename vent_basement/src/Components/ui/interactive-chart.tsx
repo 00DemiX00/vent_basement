@@ -110,8 +110,6 @@ export function ChartAreaInteractive() {
     startDate.setDate(startDate.getDate() - daysToSubtract)
     return date >= startDate
   })
-  const isFan1On = filteredData.some((item) => item.fan1 === "on")
-  const isFan2On = filteredData.some((item) => item.fan2 === "on")
 const transformedData = filteredData.map((item) => ({
   ...item,
   fan1: item.fan1 === "on" ? 1 : 0,

@@ -7,8 +7,7 @@ import { Esp32Context } from './Esp32Context';
 
 function IndicatorsLineTable() {
   const [isEsp32On, setIsEsp32On] = useState(true);
-
-
+  
   return (
     <Esp32Context.Provider value={{ isEsp32On, setIsEsp32On }}>
       <header 
@@ -18,7 +17,7 @@ function IndicatorsLineTable() {
           textAlign: 'left',
           fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
         }}>
-        <div style={{ width: '1100px', fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"' }}> 
+        <div style={{ width: '80%', fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"' }}> 
           <Table>
             <TableBody>
               <TableRow>

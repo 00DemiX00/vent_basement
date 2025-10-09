@@ -3,19 +3,19 @@ import { ChartBarMultiple } from "./ui/bar-chart";
 
 function Dashboard() {
   return (
-  <header 
+  <div 
     style={{
         display: "flex",
         paddingLeft: '70px', paddingRight: '70px', paddingBottom: '70px',
         textAlign: 'left',
         fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
     }}>
-  <div style={{ width: '2000px', display: "flex",
+  <div style={{ width: '100%', display: "flex",
     fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'}}>
-    <ChartAreaInteractive></ChartAreaInteractive>
-    <div style={{ marginLeft: '20px' }}><ChartBarMultiple></ChartBarMultiple></div>
+    <div style={{ flex: 2 }}><ChartAreaInteractive></ChartAreaInteractive></div>
+    <div style={{ marginLeft: '10px', flex: 1 }}><ChartBarMultiple></ChartBarMultiple></div>
   </div>
-</header>
+</div>
   );
 }
 

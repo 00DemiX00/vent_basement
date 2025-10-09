@@ -27,7 +27,7 @@ const chartConfig = {
 
 export function ChartBarMultiple() {
   return (
-    <Card className="aspect-auto w-[700px]">
+      <Card>
       <CardHeader>
         <CardTitle>Температура (°C)</CardTitle>
         <CardDescription>Понедельник - Воскресенье</CardDescription>
