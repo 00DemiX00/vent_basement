@@ -82,10 +82,10 @@ const WeatherDisplay: React.FC = () => {
       
       color: '#fff',
       padding: '20px 30px',
-      display: 'flex',          // в одну строку
+      display: 'flex',          
       alignItems: 'center',
-      justifyContent:'center',   // по центру
-      gap:'30px',                // расстояние между элементами
+      justifyContent:'center',  
+      gap:'30px',               
       fontFamily:'"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
       fontSize:'1.0em'
     }}>
