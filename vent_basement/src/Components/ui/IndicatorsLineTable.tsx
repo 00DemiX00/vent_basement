@@ -2,12 +2,31 @@ import { Table, TableBody, TableCell, TableRow } from "../shadcn-base/table";
 import IndicatorsLine from "./IndicatorsLine";
 import WeatherDisplay from "./temperature-humidity-display";
 import { Switch } from "../shadcn-base/switch";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Esp32Context } from './Esp32Context';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDeviceStatuses } from "@/Redux/devices/devicesSlice";
+import type { AppDispatch, RootState } from "@/Redux/store/store"
+
 
 function IndicatorsLineTable() {
   const [isEsp32On, setIsEsp32On] = useState(true);
-  
+  const dispatch = useDispatch<AppDispatch>();
+   // Получение данных о статусах устройств
+  const { data, loading, error } = useSelector((state: RootState) => state.devices);
+  // Автоматическая загрузка данных при монтировании компонента
+  useEffect(() => {
+    dispatch(fetchDeviceStatuses());
+  }, [dispatch]);
+  if (loading) {
+    return <div>Загрузка данных...</div>;
+  }
+
+  if (error) {
+    return <div style={{ color: 'red' }}>Ошибка: {error}</div>;
+  }
+
+
   return (
     <Esp32Context.Provider value={{ isEsp32On, setIsEsp32On }}>
       <header 
@@ -27,13 +46,12 @@ function IndicatorsLineTable() {
                 <TableCell 
                   className="font-medium" style={{ paddingLeft: "20px"}}>Датчик 1 (пол)
                 </TableCell>
-                {/* Здесь можно не передавать isEsp32On, он берётся из контекста! */}
-                <TableCell><IndicatorsLine device="sensor" status="working" isEsp32On={isEsp32On}  /></TableCell>
+                <TableCell><IndicatorsLine device="sensor" status={data.sensor1} isEsp32On={isEsp32On}/></TableCell>
                 <WeatherDisplay />
                 <TableCell 
                   className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "20px" }}>Вентилятор 1
                 </TableCell>
-                <TableCell><IndicatorsLine device="fan" status="on" isEsp32On={isEsp32On}  /></TableCell>
+                <TableCell><IndicatorsLine device="fan" status={data.fan1} isEsp32On={isEsp32On}/></TableCell>
                 <TableCell className="font-medium">АВТО</TableCell>
                 <TableCell><Switch /></TableCell>
                 <TableCell className="font-medium">РУЧНОЙ</TableCell>
@@ -49,12 +67,12 @@ function IndicatorsLineTable() {
                 <TableCell 
                   className="font-medium" style={{ paddingLeft: "20px", paddingRight: "20px" }}>Датчик 2 (подвал)
                 </TableCell>
-                <TableCell><IndicatorsLine device="sensor" status="working" isEsp32On={isEsp32On}  /></TableCell>
+                <TableCell><IndicatorsLine device="sensor" status={data.sensor2} isEsp32On={isEsp32On}  /></TableCell>
                 <WeatherDisplay />
                 <TableCell 
                   className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "20px" }}>Вентилятор 2
                 </TableCell>
-                <TableCell><IndicatorsLine device="fan" status="off" isEsp32On={isEsp32On}  /></TableCell>
+                <TableCell><IndicatorsLine device="fan" status={data.fan2} isEsp32On={isEsp32On}  /></TableCell>
                 <TableCell className="font-medium">АВТО</TableCell>
                 <TableCell><Switch /></TableCell>
                 <TableCell className="font-medium" style={{ paddingLeft: "10px"}}>РУЧНОЙ</TableCell>

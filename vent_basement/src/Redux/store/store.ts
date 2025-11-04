@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-//import exampleReducer from './reducers/exampleReducer';
+import devicesReducer from '../devices/devicesSlice';
 
 const store = configureStore({
   reducer: {
-    example: exampleReducer,
+    devices: devicesReducer,
   },
 });
 
 export default store;
 
-// Типы типовизация состояния и dispatch (опционально)
+// Типизация состояния и dispatch (опционально)
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
