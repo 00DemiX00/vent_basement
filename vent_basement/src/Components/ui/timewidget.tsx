@@ -22,6 +22,7 @@ const TimeWidget: React.FC = () => {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: '25px',
     backgroundColor: '#000000',
     fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
     color: '#ffffff',

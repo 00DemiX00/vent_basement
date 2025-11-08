@@ -39,9 +39,9 @@ const DateWidget: React.FC = () => {
   };
 
   const dateStyle: React.CSSProperties = {
-    fontSize: '1em',
-    marginBottom: '12px',
+    fontSize: '1.5em',
     letterSpacing: '0.5px',
+    marginBottom: '10px',
   };
 
   return (
