@@ -1,6 +1,8 @@
 import { Table, TableBody, TableCell, TableRow } from "../shadcn-base/table";
 import IndicatorsLine from "./IndicatorsLine";
 import WeatherDisplay from "./temperature-humidity-display";
+import DateWidget from "./datewidget";
+import TimeWidget from "./timewidget";
 import { Switch } from "../shadcn-base/switch";
 import { useState, useEffect } from 'react';
 import { Esp32Context } from './Esp32Context';
@@ -48,6 +50,7 @@ function IndicatorsLineTable() {
                 </TableCell>
                 <TableCell><IndicatorsLine device="sensor" status={data.sensor1} isEsp32On={isEsp32On}/></TableCell>
                 <WeatherDisplay />
+                <TableCell><DateWidget /></TableCell>
                 <TableCell 
                   className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "20px" }}>Вентилятор 1
                 </TableCell>
@@ -69,6 +72,7 @@ function IndicatorsLineTable() {
                 </TableCell>
                 <TableCell><IndicatorsLine device="sensor" status={data.sensor2} isEsp32On={isEsp32On}  /></TableCell>
                 <WeatherDisplay />
+                <TableCell><TimeWidget /></TableCell>
                 <TableCell 
                   className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "20px" }}>Вентилятор 2
                 </TableCell>

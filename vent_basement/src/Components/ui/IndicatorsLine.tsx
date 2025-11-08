@@ -69,7 +69,6 @@ const IndicatorsLine = <T extends DeviceType>({ device, status, linesCount = 4 }
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: 'Arial, sans-serif'
     }}>
       {/* Индикаторы */}
       <div style={{

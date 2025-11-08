@@ -48,8 +48,6 @@ const WeatherDisplay: React.FC = () => {
         color: '#fff',
         padding: '16px',
         fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-        borderRadius: '12px',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
         display: 'inline-block',
         minWidth: '250px',
         textAlign: 'center'
@@ -65,9 +63,7 @@ const WeatherDisplay: React.FC = () => {
         backgroundColor: '#222',
         color: '#fff',
         padding: '16px',
-        fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
-        borderRadius: '12px',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+        fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
         display: 'inline-block',
         minWidth: '250px',
         textAlign: 'center'
@@ -81,7 +77,6 @@ const WeatherDisplay: React.FC = () => {
     <div style={{
       
       color: '#fff',
-      padding: '20px 30px',
       display: 'flex',          
       alignItems: 'center',
       justifyContent:'center',  
@@ -90,12 +85,12 @@ const WeatherDisplay: React.FC = () => {
       fontSize:'1.0em'
     }}>
       <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
-        <span style={{ fontWeight:'bold', marginBottom:'8px' }}>Температура</span>
+        <span style={{ marginBottom:'8px'}}>Температура</span>
         <span style={{ fontSize:'1.5em' }}>{data?.temperature.toFixed(1)} &deg;C</span>
       </div>
       
       <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
-        <span style={{ fontWeight:'bold', marginBottom:'8px' }}>Влажность</span>
+        <span style={{ marginBottom:'8px' }}>Влажность</span>
         <span style={{ fontSize:'1.5em' }}>{data?.humidity.toFixed(1)} %</span>
       </div>
     </div>
