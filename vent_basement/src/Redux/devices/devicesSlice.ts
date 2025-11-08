@@ -36,7 +36,7 @@ export const fetchDeviceStatuses = createAsyncThunk(
   'devices/fetchStatuses',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('https://my.api.endpoint/devices/statuses');
+      const response = await axios.get('http://localhost:3001/devices'); //'https://my.api.endpoint/devices/statuses'
       // предположим, что ответ имеет структуру:
       // { esp32: 'online', sensor1: 'working', sensor2: 'error', fan1: 'on', fan2: 'off' }
       return response.data as DevicesState['data'];

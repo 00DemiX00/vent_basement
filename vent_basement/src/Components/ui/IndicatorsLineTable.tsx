@@ -62,7 +62,7 @@ function IndicatorsLineTable() {
               <TableRow> 
                 <TableCell 
                   className="font-medium" style={{ borderRight: "1px solid #373737"}}>
-                  <IndicatorsLine device="esp32" status="online" isEsp32On={isEsp32On}  />
+                  <IndicatorsLine device="esp32" status={data.esp32} isEsp32On={isEsp32On}  />
                 </TableCell>
                 <TableCell 
                   className="font-medium" style={{ paddingLeft: "20px", paddingRight: "20px" }}>Датчик 2 (подвал)

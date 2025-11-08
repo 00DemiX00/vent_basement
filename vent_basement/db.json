@@ -1,0 +1,9 @@
+{
+  "devices": {
+    "esp32": "online",
+    "sensor1": "working",
+    "sensor2": "working",
+    "fan1": "on",
+    "fan2": "off"
+  }
+}
