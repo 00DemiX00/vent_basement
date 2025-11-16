@@ -7,7 +7,7 @@ import { Switch } from "../shadcn-base/switch";
 import { useState, useEffect } from 'react';
 import { Esp32Context } from './Esp32Context';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDeviceStatuses } from "@/Redux/devices/devicesSlice";
+import { fetchDeviceStatuses } from "@/Redux/devices/devicesStatusSlice";
 import type { AppDispatch, RootState } from "@/Redux/store/store"
 
 

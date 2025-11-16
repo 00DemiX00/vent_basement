@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import devicesReducer from '../devices/devicesSlice';
+import devicesReducer from '../devices/devicesStatusSlice';
 
 const store = configureStore({
   reducer: {
