@@ -6,5 +6,22 @@
     "fan1": "on",
     "fan2": "off",
     "time": "2025-11-09 23:36:00"
-  }
+  },
+"humidityData": [
+    {
+      "timestamp": "2025-11-01T12:00:00Z",
+      "sensor1Humidity": 70,
+      "sensor2Humidity": 65,
+      "fan1Status": "off",
+      "fan2Status": "on"
+    }
+  ],
+  "temperatureData": [
+    {
+      "date": "2025-11-01",
+      "sensor1Temp": 22.5,
+      "sensor2Temp": 21.8
+    }
+  ]
 }
+
