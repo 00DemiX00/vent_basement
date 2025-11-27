@@ -72,7 +72,7 @@ function IndicatorsLineTable() {
                 </TableCell>
                 <TableCell><IndicatorsLine device="sensor" status={data.sensor2} isEsp32On={isEsp32On}  /></TableCell>
                 <WeatherDisplay />
-                <TableCell><TimeWidget /></TableCell>
+                <TableCell><TimeWidget timeZone="Asia/Yekaterinburg"/></TableCell>
                 <TableCell 
                   className="font-medium" style={{ borderLeft: "1px solid #373737", paddingLeft: "20px" }}>Вентилятор 2
                 </TableCell>

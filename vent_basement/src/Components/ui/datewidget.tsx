@@ -1,35 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import { DateTime } from 'luxon';
 
 const DateWidget: React.FC = () => {
-  const [dateTime, setDateTime] = useState<Date>(new Date());
+  const [dateTime, setDateTime] = useState<DateTime>(DateTime.now());
 
-  // Обновляем время каждую секунду (минуту)
+  // Обновляем время каждую секунду
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setDateTime(new Date());
+      setDateTime(DateTime.now());
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
 
-  // Массив названий дней недели
+  // Названия дней недели по Luxon (по умолчанию в английском, можно настроить)
   const daysOfWeek = [
     'Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'
   ];
-  const dayName = daysOfWeek[dateTime.getDay()];
+
+  const dayName = daysOfWeek[dateTime.weekday % 7]; // dayOfWeek: 1 (понедельник) - 7 (воскресенье)
 
   // Форматирование даты
-  const day = dateTime.getDate().toString().padStart(2, '0');
-  const month = (dateTime.getMonth() + 1).toString().padStart(2, '0');
-  const year = dateTime.getFullYear();
+  const day = dateTime.toFormat('dd'); // день месяца с ведущим нулём
+  const month = dateTime.toFormat('MM'); // месяц с ведущим нулём
+  const year = dateTime.year; // год
 
-  // Стиль контейнера — минимализм и центрирование
+ 
   const containerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#000000',
-    fontFamily: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+    fontFamily:
+      'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
     color: '#ffffff',
   };
 
