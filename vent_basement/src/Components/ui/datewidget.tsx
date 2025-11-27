@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 
-const DateWidget: React.FC = () => {
-  const [dateTime, setDateTime] = useState<DateTime>(DateTime.now());
+interface DateWidgetProps {
+  timeZone: string;
+}
 
-  // Обновляем время каждую секунду
+const DateWidget: React.FC<DateWidgetProps> = ({ timeZone }) => {
+  const [dateTime, setDateTime] = useState<DateTime>(() => DateTime.now().setZone(timeZone));
+
   useEffect(() => {
+    // Обновляем каждую секунду, учитывая выбранную временную зону
     const intervalId = setInterval(() => {
-      setDateTime(DateTime.now());
+      setDateTime(DateTime.now().setZone(timeZone));
     }, 1000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [timeZone]); // при изменении пропса меняем таймер
 
-  // Названия дней недели по Luxon (по умолчанию в английском, можно настроить)
   const daysOfWeek = [
     'Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'
   ];
 
-  const dayName = daysOfWeek[dateTime.weekday % 7]; // dayOfWeek: 1 (понедельник) - 7 (воскресенье)
+  // День недели по индексу 1-7, где 1 — понедельник, 7 — воскресенье
+  // Для массива с нуля — (weekday % 7)
+  const dayName = daysOfWeek[(dateTime.weekday % 7)]; 
 
-  // Форматирование даты
-  const day = dateTime.toFormat('dd'); // день месяца с ведущим нулём
-  const month = dateTime.toFormat('MM'); // месяц с ведущим нулём
-  const year = dateTime.year; // год
+  const day = dateTime.toFormat('dd');
+  const month = dateTime.toFormat('MM');
+  const year = dateTime.year;
 
- 
   const containerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
