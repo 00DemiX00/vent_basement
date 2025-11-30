@@ -3,8 +3,24 @@ import { Area, AreaChart, CartesianGrid, XAxis} from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../shadcn-base/card"
 import { type ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "../shadcn-base/chart"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../shadcn-base/select"
+import { useDispatch } from 'react-redux'
+import { fetchHumidityData } from '../../Redux/slices/interactiveChartSlice'
+import { type AppDispatch } from "@/Redux/store/store"
 
-export const description = "An interactive area chart"
+function getDateRangeBasedOnTimeRange(timeRange: string): { from: Date; to: Date } {
+  const to = new Date('2024-06-30'); // текущая дата или заданная
+  let daysBack = 90; // по умолчанию 90 дней
+
+  if (timeRange === '30d') {
+    daysBack = 30;
+  } else if (timeRange === '7d') {
+    daysBack = 7;
+  }
+
+  const from = new Date(to);
+  from.setDate(to.getDate() - daysBack);
+  return { from, to };
+}
 
 const chartData = [
     { date: "2024-04-21", desktop: 137, mobile: 200, fan1: "off", fan2: "off" },
@@ -97,6 +113,12 @@ const chartConfig = {
 
 export function ChartAreaInteractive() {
   const [timeRange, setTimeRange] = React.useState("90d")
+  const dispatch = useDispatch<AppDispatch>();
+  React.useEffect(() => {
+  const { from, to } = getDateRangeBasedOnTimeRange(timeRange);
+  dispatch(fetchHumidityData({ from: from.toISOString(), to: to.toISOString() }));
+}, [timeRange, dispatch]);
+  
   const filteredData = chartData.filter((item) => {
     const date = new Date(item.date)
     const referenceDate = new Date("2024-06-30")

@@ -10,6 +10,8 @@
 "humidityData": [
     {
       "timestamp": "2025-11-01T12:00:00Z",
+      "startDate": "2025-11-09",
+      "endDate": "2025-12-10",
       "sensor1Humidity": 70,
       "sensor2Humidity": 65,
       "fan1Status": "off",
