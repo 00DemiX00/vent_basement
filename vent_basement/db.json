@@ -7,15 +7,643 @@
     "fan2": "off",
     "time": "2025-11-09 23:36:00"
   },
-"humidityData": [
+  "humidity": [
     {
-      "timestamp": "2025-11-01T12:00:00Z",
-      "startDate": "2025-11-09",
-      "endDate": "2025-12-10",
-      "sensor1Humidity": 70,
-      "sensor2Humidity": 65,
-      "fan1Status": "off",
-      "fan2Status": "on"
+      "timestamp": "2024-09-01T12:00:00Z",
+      "humidity_basement": 65,
+      "humidity_floor": 55,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-02T12:00:00Z",
+      "humidity_basement": 68,
+      "humidity_floor": 58,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-03T12:00:00Z",
+      "humidity_basement": 62,
+      "humidity_floor": 52,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-04T12:00:00Z",
+      "humidity_basement": 70,
+      "humidity_floor": 60,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-05T12:00:00Z",
+      "humidity_basement": 63,
+      "humidity_floor": 53,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-06T12:00:00Z",
+      "humidity_basement": 58,
+      "humidity_floor": 48,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-07T12:00:00Z",
+      "humidity_basement": 72,
+      "humidity_floor": 62,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-08T12:00:00Z",
+      "humidity_basement": 66,
+      "humidity_floor": 56,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-09T12:00:00Z",
+      "humidity_basement": 59,
+      "humidity_floor": 49,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-10T12:00:00Z",
+      "humidity_basement": 64,
+      "humidity_floor": 54,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-11T12:00:00Z",
+      "humidity_basement": 69,
+      "humidity_floor": 59,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-12T12:00:00Z",
+      "humidity_basement": 61,
+      "humidity_floor": 51,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-13T12:00:00Z",
+      "humidity_basement": 67,
+      "humidity_floor": 57,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-14T12:00:00Z",
+      "humidity_basement": 55,
+      "humidity_floor": 45,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-15T12:00:00Z",
+      "humidity_basement": 71,
+      "humidity_floor": 61,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-16T12:00:00Z",
+      "humidity_basement": 63,
+      "humidity_floor": 53,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-17T12:00:00Z",
+      "humidity_basement": 58,
+      "humidity_floor": 48,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-18T12:00:00Z",
+      "humidity_basement": 66,
+      "humidity_floor": 56,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-19T12:00:00Z",
+      "humidity_basement": 70,
+      "humidity_floor": 60,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-20T12:00:00Z",
+      "humidity_basement": 62,
+      "humidity_floor": 52,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-21T12:00:00Z",
+      "humidity_basement": 65,
+      "humidity_floor": 55,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-22T12:00:00Z",
+      "humidity_basement": 68,
+      "humidity_floor": 58,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-23T12:00:00Z",
+      "humidity_basement": 59,
+      "humidity_floor": 49,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-24T12:00:00Z",
+      "humidity_basement": 72,
+      "humidity_floor": 62,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-25T12:00:00Z",
+      "humidity_basement": 64,
+      "humidity_floor": 54,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-26T12:00:00Z",
+      "humidity_basement": 67,
+      "humidity_floor": 57,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-27T12:00:00Z",
+      "humidity_basement": 61,
+      "humidity_floor": 51,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-09-28T12:00:00Z",
+      "humidity_basement": 69,
+      "humidity_floor": 59,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-29T12:00:00Z",
+      "humidity_basement": 63,
+      "humidity_floor": 53,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-09-30T12:00:00Z",
+      "humidity_basement": 66,
+      "humidity_floor": 56,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-01T12:00:00Z",
+      "humidity_basement": 58,
+      "humidity_floor": 48,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-02T12:00:00Z",
+      "humidity_basement": 71,
+      "humidity_floor": 61,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-03T12:00:00Z",
+      "humidity_basement": 64,
+      "humidity_floor": 54,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-04T12:00:00Z",
+      "humidity_basement": 67,
+      "humidity_floor": 57,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-05T12:00:00Z",
+      "humidity_basement": 60,
+      "humidity_floor": 50,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-06T12:00:00Z",
+      "humidity_basement": 69,
+      "humidity_floor": 59,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-07T12:00:00Z",
+      "humidity_basement": 62,
+      "humidity_floor": 52,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-08T12:00:00Z",
+      "humidity_basement": 65,
+      "humidity_floor": 55,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-09T12:00:00Z",
+      "humidity_basement": 70,
+      "humidity_floor": 60,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-10T12:00:00Z",
+      "humidity_basement": 63,
+      "humidity_floor": 53,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-11T12:00:00Z",
+      "humidity_basement": 66,
+      "humidity_floor": 56,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-12T12:00:00Z",
+      "humidity_basement": 59,
+      "humidity_floor": 49,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-13T12:00:00Z",
+      "humidity_basement": 72,
+      "humidity_floor": 62,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-14T12:00:00Z",
+      "humidity_basement": 64,
+      "humidity_floor": 54,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-15T12:00:00Z",
+      "humidity_basement": 67,
+      "humidity_floor": 57,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-16T12:00:00Z",
+      "humidity_basement": 61,
+      "humidity_floor": 51,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-17T12:00:00Z",
+      "humidity_basement": 68,
+      "humidity_floor": 58,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-18T12:00:00Z",
+      "humidity_basement": 63,
+      "humidity_floor": 53,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-19T12:00:00Z",
+      "humidity_basement": 66,
+      "humidity_floor": 56,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-20T12:00:00Z",
+      "humidity_basement": 59,
+      "humidity_floor": 49,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-21T12:00:00Z",
+      "humidity_basement": 71,
+      "humidity_floor": 61,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-22T12:00:00Z",
+      "humidity_basement": 64,
+      "humidity_floor": 54,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-23T12:00:00Z",
+      "humidity_basement": 67,
+      "humidity_floor": 57,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-24T12:00:00Z",
+      "humidity_basement": 60,
+      "humidity_floor": 50,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-25T12:00:00Z",
+      "humidity_basement": 69,
+      "humidity_floor": 59,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-26T12:00:00Z",
+      "humidity_basement": 62,
+      "humidity_floor": 52,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-27T12:00:00Z",
+      "humidity_basement": 65,
+      "humidity_floor": 55,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-28T12:00:00Z",
+      "humidity_basement": 68,
+      "humidity_floor": 58,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-29T12:00:00Z",
+      "humidity_basement": 61,
+      "humidity_floor": 51,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-10-30T12:00:00Z",
+      "humidity_basement": 70,
+      "humidity_floor": 60,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-10-31T12:00:00Z",
+      "humidity_basement": 63,
+      "humidity_floor": 53,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-01T12:00:00Z",
+      "humidity_basement": 66,
+      "humidity_floor": 56,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-02T12:00:00Z",
+      "humidity_basement": 59,
+      "humidity_floor": 49,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-03T12:00:00Z",
+      "humidity_basement": 72,
+      "humidity_floor": 62,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-04T12:00:00Z",
+      "humidity_basement": 64,
+      "humidity_floor": 54,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-05T12:00:00Z",
+      "humidity_basement": 67,
+      "humidity_floor": 57,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-06T12:00:00Z",
+      "humidity_basement": 61,
+      "humidity_floor": 51,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-07T12:00:00Z",
+      "humidity_basement": 68,
+      "humidity_floor": 58,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-08T12:00:00Z",
+      "humidity_basement": 63,
+      "humidity_floor": 53,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-09T12:00:00Z",
+      "humidity_basement": 66,
+      "humidity_floor": 56,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-10T12:00:00Z",
+      "humidity_basement": 59,
+      "humidity_floor": 49,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-11T12:00:00Z",
+      "humidity_basement": 71,
+      "humidity_floor": 61,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-12T12:00:00Z",
+      "humidity_basement": 64,
+      "humidity_floor": 54,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-13T12:00:00Z",
+      "humidity_basement": 67,
+      "humidity_floor": 57,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-14T12:00:00Z",
+      "humidity_basement": 60,
+      "humidity_floor": 50,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-15T12:00:00Z",
+      "humidity_basement": 69,
+      "humidity_floor": 59,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-16T12:00:00Z",
+      "humidity_basement": 62,
+      "humidity_floor": 52,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-17T12:00:00Z",
+      "humidity_basement": 65,
+      "humidity_floor": 55,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-18T12:00:00Z",
+      "humidity_basement": 70,
+      "humidity_floor": 60,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-19T12:00:00Z",
+      "humidity_basement": 63,
+      "humidity_floor": 53,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-20T12:00:00Z",
+      "humidity_basement": 66,
+      "humidity_floor": 56,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-21T12:00:00Z",
+      "humidity_basement": 59,
+      "humidity_floor": 49,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-22T12:00:00Z",
+      "humidity_basement": 72,
+      "humidity_floor": 62,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-23T12:00:00Z",
+      "humidity_basement": 64,
+      "humidity_floor": 54,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-24T12:00:00Z",
+      "humidity_basement": 67,
+      "humidity_floor": 57,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-25T12:00:00Z",
+      "humidity_basement": 61,
+      "humidity_floor": 51,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-26T12:00:00Z",
+      "humidity_basement": 68,
+      "humidity_floor": 58,
+      "fan1_status": "on",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-27T12:00:00Z",
+      "humidity_basement": 63,
+      "humidity_floor": 53,
+      "fan1_status": "off",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-28T12:00:00Z",
+      "humidity_basement": 66,
+      "humidity_floor": 56,
+      "fan1_status": "on",
+      "fan2_status": "off"
+    },
+    {
+      "timestamp": "2024-11-29T12:00:00Z",
+      "humidity_basement": 59,
+      "humidity_floor": 49,
+      "fan1_status": "off",
+      "fan2_status": "on"
+    },
+    {
+      "timestamp": "2024-11-30T12:00:00Z",
+      "humidity_basement": 71,
+      "humidity_floor": 61,
+      "fan1_status": "on",
+      "fan2_status": "on"
     }
   ],
   "temperatureData": [
@@ -26,4 +654,3 @@
     }
   ]
 }
-

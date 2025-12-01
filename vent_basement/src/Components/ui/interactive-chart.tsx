@@ -3,7 +3,7 @@ import { Area, AreaChart, CartesianGrid, XAxis} from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../shadcn-base/card"
 import { type ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "../shadcn-base/chart"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../shadcn-base/select"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchHumidityData } from '../../Redux/slices/interactiveChartSlice'
 import { type AppDispatch } from "@/Redux/store/store"
 
@@ -22,79 +22,6 @@ function getDateRangeBasedOnTimeRange(timeRange: string): { from: Date; to: Date
   return { from, to };
 }
 
-const chartData = [
-    { date: "2024-04-21", desktop: 137, mobile: 200, fan1: "off", fan2: "off" },
-  { date: "2024-04-22", desktop: 224, mobile: 170, fan1: "off", fan2: "off" },
-  { date: "2024-04-23", desktop: 138, mobile: 230, fan1: "off", fan2: "off" },
-  { date: "2024-04-24", desktop: 387, mobile: 290, fan1: "off", fan2: "on" },
-  { date: "2024-04-25", desktop: 215, mobile: 250, fan1: "off", fan2: "on" },
-  { date: "2024-04-26", desktop: 75, mobile: 130, fan1: "off", fan2: "on" },
-  { date: "2024-04-27", desktop: 383, mobile: 420, fan1: "off", fan2: "on" },
-  { date: "2024-04-28", desktop: 122, mobile: 180, fan1: "on", fan2: "on" },
-  { date: "2024-04-29", desktop: 315, mobile: 240, fan1: "on", fan2: "on" },
-  { date: "2024-04-30", desktop: 454, mobile: 380, fan1: "on", fan2: "on" },
-  { date: "2024-05-01", desktop: 165, mobile: 220, fan1: "on", fan2: "on" },
-  { date: "2024-05-02", desktop: 293, mobile: 310, fan1: "off", fan2: "on" },
-  { date: "2024-05-03", desktop: 247, mobile: 190, fan1: "off", fan2: "on" },
-  { date: "2024-05-04", desktop: 385, mobile: 420, fan1: "off", fan2: "on" },
-  { date: "2024-05-05", desktop: 481, mobile: 390, fan1: "off", fan2: "on" },
-  { date: "2024-05-06", desktop: 498, mobile: 520, fan1: "off", fan2: "on" },
-  { date: "2024-05-07", desktop: 388, mobile: 300, fan1: "off", fan2: "on" },
-  { date: "2024-05-08", desktop: 149, mobile: 210, fan1: "off", fan2: "on" },
-  { date: "2024-05-09", desktop: 227, mobile: 180, fan1: "off", fan2: "on" },
-  { date: "2024-05-10", desktop: 293, mobile: 330, fan1: "off", fan2: "on" },
-  { date: "2024-05-11", desktop: 335, mobile: 270, fan1: "off", fan2: "on" },
-  { date: "2024-05-12", desktop: 197, mobile: 240, fan1: "off", fan2: "on" },
-  { date: "2024-05-13", desktop: 197, mobile: 160, fan1: "off", fan2: "on" },
-  { date: "2024-05-14", desktop: 448, mobile: 490, fan1: "off", fan2: "on" },
-  { date: "2024-05-15", desktop: 473, mobile: 380, fan1: "off", fan2: "on" },
-  { date: "2024-05-16", desktop: 338, mobile: 400, fan1: "off", fan2: "on" },
-  { date: "2024-05-17", desktop: 499, mobile: 420, fan1: "off", fan2: "on" },
-  { date: "2024-05-18", desktop: 315, mobile: 350, fan1: "off", fan2: "on" },
-  { date: "2024-05-19", desktop: 235, mobile: 180, fan1: "off", fan2: "on" },
-  { date: "2024-05-20", desktop: 177, mobile: 230, fan1: "off", fan2: "on" },
-  { date: "2024-05-21", desktop: 82, mobile: 140, fan1: "off", fan2: "on" },
-  { date: "2024-05-22", desktop: 81, mobile: 120, fan1: "off", fan2: "on" },
-  { date: "2024-05-23", desktop: 252, mobile: 290, fan1: "off", fan2: "on" },
-  { date: "2024-05-24", desktop: 294, mobile: 220, fan1: "off", fan2: "on" },
-  { date: "2024-05-25", desktop: 201, mobile: 250, fan1: "off", fan2: "on" },
-  { date: "2024-05-26", desktop: 213, mobile: 170, fan1: "off", fan2: "on" },
-  { date: "2024-05-27", desktop: 420, mobile: 460, fan1: "off", fan2: "on" },
-  { date: "2024-05-28", desktop: 233, mobile: 190, fan1: "off", fan2: "on" },
-  { date: "2024-05-29", desktop: 78, mobile: 130, fan1: "off", fan2: "on" },
-  { date: "2024-05-30", desktop: 340, mobile: 280, fan1: "off", fan2: "on" },
-  { date: "2024-05-31", desktop: 178, mobile: 230, fan1: "off", fan2: "on" },
-  { date: "2024-06-01", desktop: 178, mobile: 200, fan1: "off", fan2: "on" },
-  { date: "2024-06-02", desktop: 470, mobile: 410, fan1: "off", fan2: "on" },
-  { date: "2024-06-03", desktop: 103, mobile: 160, fan1: "off", fan2: "on" },
-  { date: "2024-06-04", desktop: 439, mobile: 380, fan1: "off", fan2: "on" },
-  { date: "2024-06-05", desktop: 88, mobile: 140, fan1: "off", fan2: "on" },
-  { date: "2024-06-06", desktop: 294, mobile: 250, fan1: "off", fan2: "on" },
-  { date: "2024-06-07", desktop: 323, mobile: 370, fan1: "off", fan2: "on" },
-  { date: "2024-06-08", desktop: 385, mobile: 320, fan1: "off", fan2: "on" },
-  { date: "2024-06-09", desktop: 438, mobile: 480, fan1: "off", fan2: "on" },
-  { date: "2024-06-10", desktop: 155, mobile: 200, fan1: "off", fan2: "on" },
-  { date: "2024-06-11", desktop: 92, mobile: 150, fan1: "off", fan2: "on" },
-  { date: "2024-06-12", desktop: 492, mobile: 420, fan1: "off", fan2: "on" },
-  { date: "2024-06-13", desktop: 81, mobile: 130, fan1: "on", fan2: "off" },
-  { date: "2024-06-14", desktop: 426, mobile: 380, fan1: "on", fan2: "off" },
-  { date: "2024-06-15", desktop: 307, mobile: 350, fan1: "on", fan2: "off" },
-  { date: "2024-06-16", desktop: 371, mobile: 310, fan1: "on", fan2: "off" },
-  { date: "2024-06-17", desktop: 475, mobile: 520, fan1: "on", fan2: "off" },
-  { date: "2024-06-18", desktop: 107, mobile: 170, fan1: "on", fan2: "off" },
-  { date: "2024-06-19", desktop: 341, mobile: 290, fan1: "on", fan2: "off" },
-  { date: "2024-06-20", desktop: 408, mobile: 450, fan1: "on", fan2: "off" },
-  { date: "2024-06-21", desktop: 169, mobile: 210, fan1: "on", fan2: "on" },
-  { date: "2024-06-22", desktop: 317, mobile: 270, fan1: "off", fan2: "on" },
-  { date: "2024-06-23", desktop: 480, mobile: 530, fan1: "off", fan2: "on" },
-  { date: "2024-06-24", desktop: 132, mobile: 180, fan1: "off", fan2: "on" },
-  { date: "2024-06-25", desktop: 141, mobile: 190, fan1: "off", fan2: "on" },
-  { date: "2024-06-26", desktop: 434, mobile: 380, fan1: "off", fan2: "off" },
-  { date: "2024-06-27", desktop: 448, mobile: 490, fan1: "off", fan2: "off" },
-  { date: "2024-06-28", desktop: 149, mobile: 200, fan1: "off", fan2: "off"},
-  { date: "2024-06-29", desktop: 103, mobile: 160, fan1: "off", fan2: "off"},
-  { date: "2024-06-30", desktop: 446, mobile: 400, fan1: "off", fan2: "off"},
-]
 const chartConfig = {
   visitors: {
     label: "Влажность",
@@ -114,29 +41,26 @@ const chartConfig = {
 export function ChartAreaInteractive() {
   const [timeRange, setTimeRange] = React.useState("90d")
   const dispatch = useDispatch<AppDispatch>();
-  React.useEffect(() => {
-  const { from, to } = getDateRangeBasedOnTimeRange(timeRange);
-  dispatch(fetchHumidityData({ from: from.toISOString(), to: to.toISOString() }));
-}, [timeRange, dispatch]);
+  const { data, status, error } = useSelector((state: any) => state.humidity);
   
-  const filteredData = chartData.filter((item) => {
-    const date = new Date(item.date)
-    const referenceDate = new Date("2024-06-30")
-    let daysToSubtract = 90
-    if (timeRange === "30d") {
-      daysToSubtract = 30
-    } else if (timeRange === "7d") {
-      daysToSubtract = 7
-    }
-    const startDate = new Date(referenceDate)
-    startDate.setDate(startDate.getDate() - daysToSubtract)
-    return date >= startDate
-  })
-const transformedData = filteredData.map((item) => ({
-  ...item,
-  fan1: item.fan1 === "on" ? 1 : 0,
-  fan2: item.fan2 === "on" ? 1 : 0,
-}))
+  React.useEffect(() => {
+    const { from, to } = getDateRangeBasedOnTimeRange(timeRange);
+    dispatch(fetchHumidityData({ from: from.toISOString(), to: to.toISOString() }));
+  }, [timeRange, dispatch]);
+
+  if (status === 'loading') {
+    return <div>Загрузка данных...</div>;
+  }
+
+  if (status === 'failed') {
+    return <div>Ошибка: {error}</div>;
+  }
+
+  const transformedData = data.map((item: any) => ({
+    ...item,
+    fan1: item.fan1 === "on" ? 1 : 0,
+    fan2: item.fan2 === "on" ? 1 : 0,
+  }));
   return (
     <Card className="aspect-auto w-[950px]">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
