@@ -8,7 +8,8 @@ import { fetchHumidityData } from '../../Redux/slices/interactiveChartSlice'
 import { type AppDispatch } from "@/Redux/store/store"
 
 function getDateRangeBasedOnTimeRange(timeRange: string): { from: Date; to: Date } {
-  const to = new Date('2024-06-30'); // текущая дата или заданная
+  // Временная фиксация даты для тестирования с данными за 2024 год
+  const to = new Date('2024-12-01'); // Фиксированная дата вместо текущей
   let daysBack = 90; // по умолчанию 90 дней
 
   if (timeRange === '30d') {
@@ -19,6 +20,7 @@ function getDateRangeBasedOnTimeRange(timeRange: string): { from: Date; to: Date
 
   const from = new Date(to);
   from.setDate(to.getDate() - daysBack);
+  console.log('Calculated date range:', { from, to, timeRange });
   return { from, to };
 }
 
@@ -45,6 +47,7 @@ export function ChartAreaInteractive() {
   
   React.useEffect(() => {
     const { from, to } = getDateRangeBasedOnTimeRange(timeRange);
+    console.log('Dispatching fetch with dates:', from.toISOString(), to.toISOString());
     dispatch(fetchHumidityData({ from: from.toISOString(), to: to.toISOString() }));
   }, [timeRange, dispatch]);
 
@@ -56,7 +59,14 @@ export function ChartAreaInteractive() {
     return <div>Ошибка: {error}</div>;
   }
 
-  const transformedData = data.map((item: any) => ({
+  const { from: rangeFrom, to: rangeTo } = getDateRangeBasedOnTimeRange(timeRange);
+  
+  const filteredData = data.filter((item: any) => {
+    const itemDate = new Date(item.date);
+    return itemDate >= rangeFrom && itemDate <= rangeTo;
+  });
+
+  const transformedData = filteredData.map((item: any) => ({
     ...item,
     fan1: item.fan1 === "on" ? 1 : 0,
     fan2: item.fan2 === "on" ? 1 : 0,

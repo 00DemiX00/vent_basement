@@ -25,9 +25,11 @@ interface HumidityState {
 
 // Встроенная API-функция
 const fetchHumidityFromAPI = async ({ from, to }: { from: string; to: string }): Promise<FormattedHumidityData[]> => {
+  console.log('Fetching humidity data from', from, 'to', to);
   const response = await axios.get<RawHumidityData[]>('http://localhost:3001/humidity', {
     params: { from, to },
   });
+  console.log('Received', response.data.length, 'records');
   return response.data.map(item => ({
     date: item.timestamp,
     desktop: item.humidity_basement,
