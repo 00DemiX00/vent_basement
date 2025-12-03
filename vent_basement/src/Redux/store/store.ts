@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import devicesReducer from '../slices/devicesStatusSlice';
 import humidityReducer from '../slices/interactiveChartSlice';
+import temperatureReducer from '../slices/temperatureSlice';
 const store = configureStore({
   reducer: {
     devices: devicesReducer,
     humidity: humidityReducer,
+    temperature: temperatureReducer,
   },
 });
 

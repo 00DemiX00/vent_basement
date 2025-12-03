@@ -1,35 +1,50 @@
+import * as React from "react";
+import { useEffect } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/Components/shadcn-base/card"
 import { type ChartConfig } from "@/Components/shadcn-base/chart"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/Components/shadcn-base/chart"
+import { useDispatch, useSelector } from "react-redux"
+import type { AppDispatch, RootState } from "@/Redux/store/store"
+import { fetchTemperatureData } from "@/Redux/slices/temperatureSlice"
 
-export const description = "An area chart with gradient fill"
-const chartData = [
-  { month: "Пн", desktop: 57, mobile: 47 },
-  { month: "Вт", desktop: 34, mobile: 55 },
-  { month: "Ср", desktop: 21, mobile: 57 },
-  { month: "Чт", desktop: 83, mobile: 43 },
-  { month: "Пт", desktop: 53, mobile: 80 },
-  { month: "Сб", desktop: 56, mobile: 91 },
-  { month: "Вс", desktop: 56, mobile: 91 },
-]
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  const days = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
+  const dayName = days[date.getDay()]
+  const dayNumber = date.getDate()
+  const month = date.toLocaleString('ru-RU', { month: 'short' })
+  return `${dayName} ${dayNumber} ${month}`
+}
+
 const chartConfig = {
-  desktop: {
-    label: "Д1 (пол)",
+  floorTemp: {
+    label: "Температура (пол)",
     color: "var(--chart-1)",
   },
-  mobile: {
-    label: "Д2 (подвал)",
+  basementTemp: {
+    label: "Температура (подвал)",
     color: "var(--chart-2)",
   },
 } satisfies ChartConfig
-export function ChartAreaGradient() {
+export const ChartAreaGradient = React.memo(function ChartAreaGradient() {
+  const dispatch = useDispatch<AppDispatch>();
+  const chartData = useSelector((state: RootState) => state.temperature.data);
+
+  useEffect(() => {
+    dispatch(fetchTemperatureData());
+  }, [dispatch]);
+
+  if (!chartData.length) {
+    return <div>Загрузка данных...</div>;
+  }
   return (
-    <Card style={{ width: '600px', height: '400px' }} >
+    <Card className="w-full h-[400px]">
       <CardHeader>
-        <CardTitle>Показатели влажности (%)</CardTitle>
+        <CardTitle>Показатели температуры (°C)</CardTitle>
         <CardDescription>
-          За последнюю неделю
+          За последнюю неделю (пол и подвал)
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -44,53 +59,53 @@ export function ChartAreaGradient() {
           >
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey="date"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={formatDate}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <defs>
-              <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillFloor" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="var(--color-desktop)"
+                  stopColor="var(--chart-1)"
                   stopOpacity={0.8}
                 />
                 <stop
                   offset="95%"
-                  stopColor="var(--color-desktop)"
+                  stopColor="var(--chart-1)"
                   stopOpacity={0.1}
                 />
               </linearGradient>
-              <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillBasement" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="var(--color-mobile)"
+                  stopColor="var(--chart-2)"
                   stopOpacity={0.8}
                 />
                 <stop
                   offset="95%"
-                  stopColor="var(--color-mobile)"
+                  stopColor="var(--chart-2)"
                   stopOpacity={0.1}
                 />
               </linearGradient>
             </defs>
             <Area
-              dataKey="mobile"
+              dataKey="basementTemp"
               type="natural"
-              fill="url(#fillMobile)"
+              fill="url(#fillBasement)"
               fillOpacity={0.4}
-              stroke="var(--color-mobile)"
+              stroke="var(--chart-2)"
               stackId="a"
             />
             <Area
-              dataKey="desktop"
+              dataKey="floorTemp"
               type="natural"
-              fill="url(#fillDesktop)"
+              fill="url(#fillFloor)"
               fillOpacity={0.4}
-              stroke="var(--color-desktop)"
+              stroke="var(--chart-1)"
               stackId="a"
             />
           </AreaChart>
@@ -98,4 +113,4 @@ export function ChartAreaGradient() {
       </CardContent>
     </Card>
   )
-}
+})

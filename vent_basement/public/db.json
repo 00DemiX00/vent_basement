@@ -646,11 +646,41 @@
       "fan2_status": "on"
     }
   ],
-  "temperatureData": [
+  "temperature": [
     {
       "date": "2025-11-01",
-      "sensor1Temp": 22.5,
-      "sensor2Temp": 21.8
+      "floorTemp": 22.5,
+      "basementTemp": 21.8
+    },
+    {
+      "date": "2025-11-02",
+      "floorTemp": 22.3,
+      "basementTemp": 21.5
+    },
+    {
+      "date": "2025-11-03",
+      "floorTemp": 22.7,
+      "basementTemp": 21.2
+    },
+    {
+      "date": "2025-11-04",
+      "floorTemp": 22.1,
+      "basementTemp": 21.9
+    },
+    {
+      "date": "2025-11-05",
+      "floorTemp": 22.4,
+      "basementTemp": 21.7
+    },
+    {
+      "date": "2025-11-06",
+      "floorTemp": 22.6,
+      "basementTemp": 21.4
+    },
+    {
+      "date": "2025-11-07",
+      "floorTemp": 22.2,
+      "basementTemp": 21.6
     }
   ]
 }
