@@ -28,7 +28,8 @@ export const fetchTemperatureData = createAsyncThunk(
     }
     const data = await response.json();
     console.log('Fetched temperature data:', data.temperature);
-    return data.temperature || [];
+    // Убедимся что возвращаем данные напрямую из поля temperature
+    return data.temperature;
   }
 );
 

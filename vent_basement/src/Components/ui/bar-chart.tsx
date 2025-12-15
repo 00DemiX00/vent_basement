@@ -1,36 +1,72 @@
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../shadcn-base/card"
 import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "../shadcn-base/chart"
-
+import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { fetchTemperatureData } from "@/Redux/slices/temperatureSlice"
+import type { RootState, AppDispatch } from "@/Redux/store/store"
+import { useAppDispatch } from "@/Redux/store/store"
 export const description = "Температура"
 
-const chartData = [
-  { day: "Понедельник", desktop: 186, mobile: 80 },
-  { day: "Вторник", desktop: 305, mobile: 200 },
-  { day: "Среда", desktop: 237, mobile: 120 },
-  { day: "Четверг", desktop: 73, mobile: 190 },
-  { day: "Пятница", desktop: 209, mobile: 130 },
-  { day: "Суббота", desktop: 214, mobile: 140 },
-  { day: "Воскресенье", desktop: 150, mobile: 100 }, 
-]
-
 const chartConfig = {
-  desktop: {
+  floorTemp: {
     label: "Д1 (пол)",
     color: "var(--chart-1)",
   },
-  mobile: {
+  basementTemp: {
     label: "Д2 (подвал)",
     color: "var(--chart-2)",
   },
 } satisfies ChartConfig
 
 export function ChartBarMultiple() {
+  const dispatch: AppDispatch = useAppDispatch()
+  const { data: temperatureData, status, error } = useSelector((state: RootState) => state.temperature)
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchTemperatureData())
+    }
+  }, [dispatch, status])
+
+  // Преобразуем данные к нужному формату
+  const chartData = temperatureData.map((item: { date: string; floorTemp: number; basementTemp: number }) => ({
+    day: item.date,
+    floorTemp: item.floorTemp,
+    basementTemp: item.basementTemp
+  }))
+  if (status === 'loading') {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Температура (°C)</CardTitle>
+          <CardDescription>Последние 7 дней</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div>Загрузка данных...</div>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  if (status === 'failed') {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Температура (°C)</CardTitle>
+          <CardDescription>Последние 7 дней</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div>Ошибка загрузки: {error}</div>
+        </CardContent>
+      </Card>
+    )
+  }
+
   return (
       <Card>
       <CardHeader>
         <CardTitle>Температура (°C)</CardTitle>
-        <CardDescription>Понедельник - Воскресенье</CardDescription>
+        <CardDescription>Последние 7 дней</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -48,17 +84,17 @@ export function ChartBarMultiple() {
               content={<ChartTooltipContent indicator="dashed" />}
             />
             <Bar
-              dataKey="desktop"
-              fill="var(--color-desktop)"
-              stroke="var(--color-desktop)"
+              dataKey="floorTemp"
+              fill="var(--chart-1)"
+              stroke="var(--chart-1)"
               strokeWidth={1}
               fillOpacity={0.5}
               radius={4}
             />
             <Bar
-              dataKey="mobile"
-              fill="var(--color-mobile)"
-              stroke="var(--color-mobile)"
+              dataKey="basementTemp"
+              fill="var(--chart-2)"
+              stroke="var(--chart-2)"
               strokeWidth={1}
               fillOpacity={0.5}
               radius={4}

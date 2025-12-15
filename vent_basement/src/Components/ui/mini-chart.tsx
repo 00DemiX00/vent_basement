@@ -37,8 +37,10 @@ export const ChartAreaGradient = React.memo(function ChartAreaGradient() {
   }, [dispatch]);
 
   if (!chartData.length) {
+    console.log('No chart data available');
     return <div>Загрузка данных...</div>;
   }
+  console.log('Chart data received:', chartData);
   return (
     <Card className="w-full h-[400px]">
       <CardHeader>

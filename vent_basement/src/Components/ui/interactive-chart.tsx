@@ -20,7 +20,6 @@ function getDateRangeBasedOnTimeRange(timeRange: string): { from: Date; to: Date
 
   const from = new Date(to);
   from.setDate(to.getDate() - daysBack);
-  console.log('Calculated date range:', { from, to, timeRange });
   return { from, to };
 }
 
@@ -47,7 +46,6 @@ export function ChartAreaInteractive() {
   
   React.useEffect(() => {
     const { from, to } = getDateRangeBasedOnTimeRange(timeRange);
-    console.log('Dispatching fetch with dates:', from.toISOString(), to.toISOString());
     dispatch(fetchHumidityData({ from: from.toISOString(), to: to.toISOString() }));
   }, [timeRange, dispatch]);
 
