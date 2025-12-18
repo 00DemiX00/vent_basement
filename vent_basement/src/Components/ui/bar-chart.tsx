@@ -1,4 +1,4 @@
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../shadcn-base/card"
 import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "../shadcn-base/chart"
 import { useSelector } from "react-redux"
@@ -77,11 +77,33 @@ export function ChartBarMultiple() {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value}
+              tickFormatter={(value) => {
+                const date = new Date(value)
+                return date.toLocaleDateString("ru", {
+                  month: "short",
+                  day: "numeric",
+                })
+              }}
+            />
+            <YAxis
+              domain={[0, 30]}
+              tickLine={false}
+              axisLine={false}
+              hide={true}
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
+              content={
+                <ChartTooltipContent
+                  indicator="dashed"
+                  labelFormatter={(value) => {
+                    return new Date(value).toLocaleDateString("ru", {
+                      month: "short",
+                      day: "numeric",
+                    })
+                  }}
+                />
+              }
             />
             <Bar
               dataKey="floorTemp"

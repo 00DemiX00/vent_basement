@@ -13,7 +13,7 @@ const store = configureStore({
 
 export default store;
 
-// Типизация состояния и dispatch (опционально)
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;
