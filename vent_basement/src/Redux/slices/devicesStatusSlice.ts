@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+import type { FanMode } from './fanModeSlice';
+
 // Типы статусов устройств
 type FanStatus = 'on' | 'off';
 type SensorStatus = 'working' | 'error' | 'offline';
@@ -13,6 +15,8 @@ interface DevicesState {
     sensor2: SensorStatus;
     fan1: FanStatus;
     fan2: FanStatus;
+    fan1_mode: FanMode;
+    fan2_mode: FanMode;
   };
   loading: boolean;
   error: string | null;
@@ -26,6 +30,8 @@ const initialState: DevicesState = {
     sensor2: 'offline',
     fan1: 'off',
     fan2: 'off',
+    fan1_mode: 'AUTO',
+    fan2_mode: 'AUTO',
   },
   loading: false,
   error: null,
@@ -37,9 +43,11 @@ export const fetchDeviceStatuses = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('http://localhost:3001/devices');
-      // предположим, что ответ имеет структуру:
-      // { esp32: 'online', sensor1: 'working', sensor2: 'error', fan1: 'on', fan2: 'off' }
-      return response.data as DevicesState['data'];
+      return {
+        ...response.data,
+        // Если в ответе сервера нет fanMode, используем значение по умолчанию
+        fanMode: response.data.fanMode || 'AUTO',
+      } as DevicesState['data'];
     } catch (err) {
       return thunkAPI.rejectWithValue('Ошибка при загрузке данных');
     }

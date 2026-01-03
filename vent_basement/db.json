@@ -5,6 +5,8 @@
     "sensor2": "working",
     "fan1": "on",
     "fan2": "off",
+    "fan1_mode": "AUTO",
+    "fan2_mode": "AUTO",
     "time": "2025-11-09 23:36:00"
   },
   "humidity": [
